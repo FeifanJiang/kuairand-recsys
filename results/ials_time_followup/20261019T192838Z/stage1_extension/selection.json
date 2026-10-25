@@ -1,0 +1,21 @@
+{
+  "binary": {
+    "setting": {
+      "alpha": 30.0,
+      "l2": 300.0
+    },
+    "stage": "previous",
+    "on_grid_edge": []
+  },
+  "time": {
+    "setting": {
+      "tau": 0.5,
+      "alpha": 30.0,
+      "l2": 100.0
+    },
+    "stage": "extension",
+    "on_grid_edge": [
+      "tau"
+    ]
+  }
+}

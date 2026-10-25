@@ -1,0 +1,147 @@
+{
+  "sets": {
+    "random": {
+      "rows": 138286,
+      "users": 9162,
+      "positive_rate": 0.07850397003311976
+    },
+    "recommended_pool": {
+      "rows": 58670,
+      "users": 10721,
+      "positive_rate": 0.3174194648031362,
+      "distinct_videos": 5185
+    },
+    "random_distinct_videos": 7476
+  },
+  "per_score": {
+    "iALS_seed0": {
+      "unpaired": {
+        "random": {
+          "users": 3271,
+          "mean_auc": 0.6507970004529389
+        },
+        "recommended_pool": {
+          "users": 6230,
+          "mean_auc": 0.594989392569357
+        }
+      },
+      "paired_users": 1721,
+      "paired_mean_auc": {
+        "random": 0.6547686849927943,
+        "recommended_pool": 0.6015837061687589
+      },
+      "random_minus_recommended": {
+        "users": 1721,
+        "a": 0.6547686849927943,
+        "b": 0.6015837061687589,
+        "difference": 0.053184978824035244,
+        "ci95": [
+          0.03399098162941308,
+          0.07263618960174549
+        ]
+      },
+      "pooled_auc_seed_mean_score": {
+        "random": 0.6470735656393144,
+        "recommended_pool": 0.6321873756935182
+      }
+    },
+    "iALS_5seeds": {
+      "unpaired": {
+        "random": {
+          "users": 3271,
+          "mean_auc": 0.6508865416272506
+        },
+        "recommended_pool": {
+          "users": 6230,
+          "mean_auc": 0.5949916669514749
+        }
+      },
+      "paired_users": 1721,
+      "paired_mean_auc": {
+        "random": 0.6547475069093661,
+        "recommended_pool": 0.6015882442490562
+      },
+      "random_minus_recommended": {
+        "users": 1721,
+        "a": 0.6547475069093661,
+        "b": 0.6015882442490562,
+        "difference": 0.05315926266030982,
+        "ci95": [
+          0.03389361129951101,
+          0.07263638706976172
+        ]
+      },
+      "pooled_auc_seed_mean_score": {
+        "random": 0.647120595736784,
+        "recommended_pool": 0.632212161986045
+      }
+    },
+    "LR-L2": {
+      "unpaired": {
+        "random": {
+          "users": 3271,
+          "mean_auc": 0.6223715387155672
+        },
+        "recommended_pool": {
+          "users": 6230,
+          "mean_auc": 0.6406049997674883
+        }
+      },
+      "paired_users": 1721,
+      "paired_mean_auc": {
+        "random": 0.6418168811157297,
+        "recommended_pool": 0.6478336027924616
+      },
+      "random_minus_recommended": {
+        "users": 1721,
+        "a": 0.6418168811157297,
+        "b": 0.6478336027924616,
+        "difference": -0.006016721676731891,
+        "ci95": [
+          -0.025056958848224765,
+          0.012005474183888766
+        ]
+      },
+      "pooled_auc_seed_mean_score": {
+        "random": 0.7337795596998911,
+        "recommended_pool": 0.7459044514925002
+      }
+    },
+    "hybrid": {
+      "unpaired": {
+        "random": {
+          "users": 3271,
+          "mean_auc": 0.6561364596283683
+        },
+        "recommended_pool": {
+          "users": 6230,
+          "mean_auc": 0.6002016528740024
+        }
+      },
+      "paired_users": 1721,
+      "paired_mean_auc": {
+        "random": 0.6694126370040768,
+        "recommended_pool": 0.6061188908529256
+      },
+      "random_minus_recommended": {
+        "users": 1721,
+        "a": 0.6694126370040768,
+        "b": 0.6061188908529256,
+        "difference": 0.06329374615115113,
+        "ci95": [
+          0.04495780654665489,
+          0.08165690974867573
+        ]
+      },
+      "pooled_auc_seed_mean_score": {
+        "random": 0.7220864341201154,
+        "recommended_pool": 0.6491947097745179
+      }
+    }
+  },
+  "paired_users_exposures": {
+    "random_rows": 59287,
+    "recommended_rows": 12742
+  },
+  "reading": "same users, week, video pool and scores; only the exposure mechanism differs; descriptive, no selection; not a test of whether adaptation fixes learned fusion"
+}

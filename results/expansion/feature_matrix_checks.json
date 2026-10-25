@@ -1,0 +1,12 @@
+{
+  "all_passed": true,
+  "1_levels_equal": true,
+  "2_L1_columns_equal": true,
+  "2_L1_max_abs_diff": 2.3283064365386963e-10,
+  "2_L1_equal_within_1e-5": true,
+  "2_L2_columns_equal": true,
+  "2_L2_max_abs_diff": 4.656612873077393e-10,
+  "2_L2_equal_within_1e-5": true,
+  "3_tree_numeric_identical": true,
+  "3_tree_categories_match_onehot": true
+}

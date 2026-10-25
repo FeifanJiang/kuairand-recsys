@@ -1,0 +1,22 @@
+{
+  "l2": 0.001,
+  "objective_refit": 0.48038622736930847,
+  "objective_saved_coefficients": 0.48038604855537415,
+  "refit_grad_norm": 0.00024794365162961185,
+  "largest_coefficient_gaps": {
+    "ua_log_exposures": 0.0014684274792671204,
+    "ua_log_long_views": 0.0009686797857284546,
+    "zero_duration": 0.0009590685367584229,
+    "upload_type=LongPicture": 0.0009350106120109558,
+    "tag1=67": 0.0009196959435939789
+  },
+  "random_validation_max_abs_logit_diff": 0.009251832962036133,
+  "scope_A_mean_user_auc": {
+    "refit": 0.6270546741632347,
+    "saved": 0.6274199157759548
+  },
+  "scope_B_mean_user_auc": {
+    "refit": 0.6256588073760924,
+    "saved": 0.6254716429613887
+  }
+}

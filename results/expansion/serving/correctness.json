@@ -1,0 +1,129 @@
+{
+  "bundle_version": "v1",
+  "load_seconds": {
+    "features_and_models": 1.4573156833648682,
+    "flat_index": 0.23618817329406738,
+    "hnsw_index": 1.092284917831421,
+    "seen_and_pop": 0.05586409568786621,
+    "total": 2.841653823852539
+  },
+  "reference": "offline scores computed in a separate torch process (k27_adapt.inputs / design), 2,000 tune-group week-1 rows, seed 7",
+  "1_score_equivalence": {
+    "rows": 2000,
+    "max_abs_score_diff": 7.449740246912029e-08,
+    "design_identical": true,
+    "ials_z_max_abs_diff": 7.028861377378348e-07,
+    "flag_identical": true,
+    "statistics_identical": {
+      "g_n": true,
+      "g_l": true,
+      "v_n": true,
+      "v_l": true,
+      "v_d0.5": true,
+      "v_d2": true,
+      "v_lastlv": true,
+      "a_n": true,
+      "a_l": true,
+      "a_d0.5": true,
+      "a_d2": true,
+      "a_lastlv": true,
+      "tg_n": true,
+      "tg_l": true,
+      "u_n": true,
+      "u_l": true,
+      "u_lv_logdur": true,
+      "u_lv_short": true,
+      "ua_n": true,
+      "ua_l": true,
+      "ut_n": true,
+      "ut_l": true
+    },
+    "attributes_identical": {
+      "author_id": true,
+      "tag1": true,
+      "upload_day": true,
+      "video_type": true,
+      "upload_type": true,
+      "music_type": true
+    },
+    "tolerance": "1e-6 absolute: the only difference is the float32 summation order of the iALS dot product (torch vs numpy); design matrix, flags, statistics and attributes must be identical",
+    "passed": true
+  },
+  "2_duration_source": {
+    "rows": 2000,
+    "table_missing_share": 0.0295,
+    "equal_share": 1.0,
+    "within_1s_share": 1.0,
+    "abs_diff_ms_quantiles_50_90_99_max": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ratio_median_table_over_logged": 1.0,
+    "score_abs_diff_quantiles_50_90_99_max": [
+      0.0,
+      2.328043535726465e-09,
+      1.862435050625777e-08,
+      7.449740246912029e-08
+    ],
+    "within_user_pair_order_flips_share": 0.0,
+    "reading": "inputs differ only where the video table and the logged duration disagree; outputs are not required to match"
+  },
+  "3_behaviour": {
+    "heavy_user": {
+      "user_id": 18703,
+      "seen": 40420,
+      "candidates": 200,
+      "fetched": 40670,
+      "rounds": 1,
+      "none_seen_in_candidates": true,
+      "top_k": 20
+    },
+    "unknown_user": {
+      "source": "time_popularity",
+      "candidates": 200,
+      "all_scores_finite": true,
+      "user_known": false,
+      "has_factors_all_zero": true
+    },
+    "zero_factor_users_in_table": 81,
+    "zero_factor_user": {
+      "user_id": 1235,
+      "source": "time_popularity",
+      "candidates": 200
+    },
+    "hnsw_path": {
+      "candidates": 200,
+      "source": "ials_hnsw",
+      "rounds": 1
+    },
+    "as_of_before_cutoff_rejected": true,
+    "unknown_video_rejected": true,
+    "passed": true
+  },
+  "4_retrieval_agreement": {
+    "users": 1000,
+    "exact_flat_latency_ms_per_query": 10.371334314346313,
+    "hnsw": {
+      "ef_32": {
+        "top200_agreement_mean": 0.655235,
+        "top200_agreement_p10": 0.515,
+        "latency_ms_per_query": 0.05136990547180176
+      },
+      "ef_128": {
+        "top200_agreement_mean": 0.69243,
+        "top200_agreement_p10": 0.595,
+        "latency_ms_per_query": 0.09258198738098145
+      },
+      "ef_512": {
+        "top200_agreement_mean": 0.72406,
+        "top200_agreement_p10": 0.635,
+        "latency_ms_per_query": 0.3312551975250244
+      }
+    },
+    "threads": 8,
+    "note": "single-query searches in a loop; inner product; no normalisation"
+  },
+  "all_passed": true
+}

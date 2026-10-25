@@ -1,0 +1,32 @@
+{
+  "encoder": "pool",
+  "C": 100,
+  "dim": 64,
+  "seed": 1,
+  "negatives": 256,
+  "max_epochs": 20,
+  "eval_every": 2,
+  "patience": 3,
+  "dropout": 0.2,
+  "shuffle": "none",
+  "out": "reports/seq_retrieval/runs_20261020",
+  "K": 50,
+  "window": 150,
+  "evaluation_history": 149,
+  "batch_windows": 81,
+  "threads": 4,
+  "lr": 0.001,
+  "trainable_items": 627612,
+  "catalog": 2120292,
+  "targets_per_epoch": 1326753,
+  "dropped_first_group": 2444,
+  "tie_order": "ascending video_id",
+  "data_md5": {
+    "train.csv.gz": "772f926f990c7edbecfcd3379821a32d",
+    "validation.csv.gz": "004a8975dfc29a23f1ae08f73e329a72",
+    "candidate_videos.csv": "852056259bdc5202ad99134b53f8e09b",
+    "training_users.csv": "1bd58b832910e53e6a839b748e9636fd"
+  },
+  "started_utc": "2026-10-20T07:52:20.425537+00:00",
+  "test_accessed": false
+}

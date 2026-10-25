@@ -1,0 +1,12 @@
+{
+  "model": "hgb",
+  "rows": 2000000,
+  "seconds": {
+    "read": 4.755644798278809,
+    "assemble_scale": 9.669616937637329,
+    "fit": 50.70779490470886
+  },
+  "total_seconds": 65.13306379318237,
+  "iterations": 300,
+  "columns": 36
+}

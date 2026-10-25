@@ -1,0 +1,11 @@
+{
+  "all_passed": true,
+  "1_counts_strictly_before": true,
+  "2_decay_tau0.5_matches_direct": true,
+  "2_decay_tau2_matches_direct": true,
+  "3_last_long_view_strictly_before": true,
+  "4_frozen_totals_and_aged_decay": true,
+  "5_row0_unchanged_when_same_timestamp_label_changes": true,
+  "5_rows0_3_unchanged_when_later_labels_change": true,
+  "5_sanity_row5_changes_when_earlier_label_changes": true
+}

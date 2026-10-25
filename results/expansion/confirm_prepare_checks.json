@@ -1,0 +1,13 @@
+{
+  "partition": "development",
+  "users": 13142,
+  "rows": 65102779,
+  "T0": 1649339966592,
+  "labels_read": "standard-log long_view before the cutoff only; no random exposure",
+  "equal_to_features_dev_8m": {
+    "u": true,
+    "ua": true,
+    "ut": true
+  },
+  "all_passed": true
+}

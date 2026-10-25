@@ -1,0 +1,7 @@
+{
+  "training_rows": 6000000,
+  "sample": "first 6,000,000 rows of data/k27/features_dev_8m/sample_ranked_rows.npy (seed 20261023 draw ranking)",
+  "reason": "8M probes stayed under 10 GB but L1/L2 runs caused swap-outs (L2 57,628 pages, ~0.9 GB); pre-set rule -> fall back to 6M; 6M probes: no swap-outs, peak <= 6.1 GB",
+  "frozen_on": "2026-10-21",
+  "validation_viewed": false
+}

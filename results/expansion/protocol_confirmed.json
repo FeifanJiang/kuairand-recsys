@@ -1,0 +1,124 @@
+{
+  "status": "CONFIRMED by the user on 2026-10-21 (draft v2 plus the clarifications below); confirmation users stay sealed",
+  "drafted_utc": "2026-10-21T16:46:57.220354+00:00",
+  "supersedes": "protocol_draft_v1.json",
+  "question": "on new KuaiRand users (27K development partition), does the best tuned personalized feature model beat tuned time-decay iALS on random exposures?",
+  "evidence_role": "development evidence; tune-group random labels select every hyperparameter; report group viewed once after all choices are frozen; confirmation users stay sealed",
+  "models": {
+    "LR-L1": "logistic regression on L1 features (feature_model.fit_lr), l2 in {1e-4, 1e-3, 1e-2}",
+    "LR-L2": "logistic regression on L2 features, same grid",
+    "Tree-L1": "HistGradientBoosting on L1 numeric features + upload_type/music_type/tag1 native categorical",
+    "Tree-L2": "HistGradientBoosting on L2 numeric features + the same categorical columns",
+    "tree_grid": {
+      "max_leaf_nodes": [
+        15,
+        63
+      ],
+      "min_samples_leaf": [
+        100,
+        1000
+      ],
+      "l2_regularization": [
+        0.0,
+        1.0
+      ]
+    },
+    "tree_fixed": {
+      "learning_rate": 0.1,
+      "max_iter": 2000,
+      "early_stopping": true,
+      "validation_fraction": 0.1,
+      "scoring": "loss",
+      "n_iter_no_change": 20,
+      "tol": 1e-07,
+      "max_bins": 255
+    },
+    "tree_early_stopping": "internal training control only: stratified random 10% of the 6M training rows (same users and period), log loss; not an independent or temporal generalization estimate",
+    "iALS_tuned": {
+      "fixed": {
+        "k": 32,
+        "iterations": 15
+      },
+      "grid": {
+        "tau_days": [
+          0.5,
+          2
+        ],
+        "alpha": [
+          10,
+          30,
+          100
+        ],
+        "l2": [
+          30,
+          100,
+          300
+        ]
+      },
+      "edge_rule": "one extension at most, for the selected tau only: if selected alpha = 100 add alpha 300, if = 10 add alpha 3, each with l2 in {30,100,300} (3 fits); if selected l2 = 300 add l2 1000, if = 30 add l2 10, each with alpha in {10,30,100} (3 fits); at most 6 fits, no corner fit; then re-select over all fits with the same rule; no further extension",
+      "data": "long views of all users before the cutoff (35.74M pairs, 4.49M videos); videos without a long view score 0"
+    },
+    "iALS_reference": "frozen 1K setting tau 0.5, alpha 30, l2 100 (a grid member); reported as a reference only - beating it is not beating tuned iALS"
+  },
+  "selection": {
+    "rule": "every choice uses the seed-0 tune-group main-population scope-A mean per-user AUC: each family hyperparameters, and the main L2 method (selected LR-L2 vs selected Tree-L2, LR deterministic, Tree seed 0)",
+    "ties": "within 0.0005 -> simpler: LR larger l2; Tree fewer leaves, then larger min_samples_leaf, then larger l2_regularization; iALS larger l2, then smaller alpha, then tau 0.5; main method LR-L2",
+    "after_selection": "extra seeds estimate mean performance and training variability only; they never change any selection"
+  },
+  "seeds_and_aggregation": {
+    "rule": "repeated-run statistic, not an ensemble: for each user the per-user AUC is computed separately for every seed and averaged over seeds; the bootstrap resamples users of these seed-averaged values",
+    "tuning": "every grid configuration of Tree and iALS uses seed 0 only; LR is deterministic",
+    "final": "selected Tree-L1 and Tree-L2 rerun with seeds 1, 2 (3 seeds); selected and reference iALS rerun with seeds 1-4 (5 seeds); all seeds use the same rule on tune and report groups",
+    "note": "fewer seeds only shorten total time; a single fit peaks at the same memory",
+    "uncertainty": "the user bootstrap reflects user-sampling uncertainty with seed-averaged per-user AUC; seed-to-seed variation (per-seed means) is reported separately"
+  },
+  "evaluation": {
+    "rows": "development users random exposures, Asia/Shanghai date of time_ms 2022-04-22..04-28, cleaned with the 1K rules; features frozen at the cutoff",
+    "main_population": ">=1 pre-cutoff standard long view AND both outcomes in the window (tune 1,612 / report 1,671 users); conclusions apply to such users only; same rule for confirmation",
+    "scope_A": "exposures of videos with >=1 pre-cutoff exposure (primary)",
+    "scope_B": "all exposures (feature models only)",
+    "cold_start": "53 users with random exposures and no pre-cutoff long view, 20 with both outcomes (report group 7); descriptive only, all models incl. iALS (constant score -> AUC 0.5, ties half)"
+  },
+  "contrasts_report_group": {
+    "primary": "best L2 method (chosen on tune) - tuned iALS, scope A per-user AUC",
+    "key_secondary": {
+      "nonlinearity": "Tree-L2 - LR-L2",
+      "personalization": [
+        "Tree-L2 - Tree-L1",
+        "LR-L2 - LR-L1"
+      ]
+    },
+    "other_secondary": [
+      "best L2 method - iALS reference (labelled reference)",
+      "tuned iALS - iALS reference",
+      "scope B versions of the key secondary contrasts",
+      "pooled AUC by video degree group (0, 1-2, >=3 pre-cutoff long views), user-cluster bootstrap",
+      "cold-start descriptive table"
+    ]
+  },
+  "statistics": "per-user AUC (ties half); paired user bootstrap 2000 resamples seed 2026; identical users and exposures in every comparison; sample sizes with every interval",
+  "decision_rule": "practically meaningful difference +0.01 per-user AUC; a contrast supports a gain when the point estimate >= 0.01 and the 95% interval excludes 0; otherwise inconclusive or no gain; only the primary contrast answers the main question",
+  "budget_from_probes": {
+    "iALS": "one fit 11.0 min, peak 5.4 GB, no swap-outs (tau 0.5, alpha 30, l2 100, seed 0): grid 18 + <= 6 edge + 4 tuned seeds + 4 reference seeds = <= 32 fits, about 6 h",
+    "Tree": "Tree-L2 63 leaves / 100 per leaf with early stopping: 385 rounds, 3.8 min total, peak 5.6 GB incl. the 10% holdout, 11,476 swap-out pages (~0.18 GB) during the run; 0.47 s per round -> 2000 rounds at most ~16 min; 16 grid fits + 4 seed fits expected ~1.5 h, worst case ~5 h",
+    "LR": "4 models x 3 l2 at 6M rows: about 2 min each, ~25 min",
+    "memory_rule": "each run serial; if a run exceeds 10 GB or shows sustained swapping, change batching or storage (not the number of seeds)"
+  },
+  "storage": "iALS seed-0 factors kept until selection (~0.6 GB each), then only selected and reference factors retained",
+  "process": "all runs serial; tune group used for every choice; report group computed once for the frozen set; any later change turns it into development feedback and is recorded",
+  "not_in_scope": "training on random-exposure labels, rolling feature cutoff, confirmation users",
+  "confirmed_utc": "2026-10-21T17:01:11.500881+00:00",
+  "resources": {
+    "note": "the Tree-L2 early-stopping probe had 11,476 swap-out pages (~0.18 GB); 6M without swap-outs earlier does not guarantee none for the final configuration",
+    "monitoring": "serial runs; swap-outs and wall time recorded per run; a run with > 1 GB swap-outs or > 2x its expected time pauses the pipeline to fix resources; small swap-outs are not failures",
+    "invariant": "resource problems never change the training sample on the basis of model results"
+  },
+  "report_group": "evaluated once after every model and selection is fixed",
+  "resources_revision_1": {
+    "approved_by_user": "2026-10-21, after incident 3, without viewing any model result",
+    "utc": "2026-10-21T23:02:06.107343+00:00",
+    "rule": "swap-outs recorded, never pause alone; pause on job failure, non-finite scores/factors/objective, memory pressure critical (kern.memorystatus_vm_pressure_level = 4) for 2 minutes (job tree terminated), or wall time > 2x the baseline of the same workload (iALS 640 s; Tree seed rerun = its seed-0 configuration wall time)",
+    "unchanged": "models, data, grids, seeds, selection rules; completed runs that passed finite checks are kept; runs resume from the first unfinished configuration",
+    "fallback": "if pauses keep recurring after freeing memory, compress iALS indices with a separate equivalence check"
+  }
+}

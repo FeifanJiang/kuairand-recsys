@@ -1,0 +1,16 @@
+{
+  "stage": "tree_L1_c4_s0",
+  "seconds": 138.90013980865479,
+  "result": {
+    "name": "Tree-L1_c4_s0",
+    "config": {
+      "max_leaf_nodes": 63,
+      "min_samples_leaf": 100,
+      "l2_regularization": 0.0
+    },
+    "seed": 0,
+    "iterations": 187,
+    "fit_seconds": 95.68490529060364,
+    "tune_auc": 0.5679054097440499
+  }
+}

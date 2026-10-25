@@ -1,0 +1,86 @@
+{
+  "status": "CONFIRMED by the user on 2026-10-22 (v3: week 2 primary, week 1 reported separately); unsealing proceeds after the week-2 development dry run passes",
+  "drafted_utc": "2026-10-22T05:56:47.175022+00:00",
+  "users": "confirmation partition of expansion_users.csv (13,143 users; seed 20261021); never used for any choice",
+  "adaptation_stage": "proposed: declared out of scope for this project, so the current stage (standard-log training, random exposures 04-22..04-28) is the confirmation task",
+  "rows": "random exposures of confirmation users, Asia/Shanghai date of time_ms 2022-04-22..04-28, 1K cleaning rules; features frozen at the cutoff; main population = >=1 pre-cutoff standard long view AND both outcomes; scope A = video with >=1 pre-cutoff exposure",
+  "histories": "confirmation users' pre-cutoff standard logs (allowed) -> frozen u/ua/ut tables by k27_confirm_prepare.py, checked first by rebuilding the development tables; global/video/author/tag tables are shared (built from all users)",
+  "models_frozen": {
+    "LR-L1": "LR-L1_l20.0001",
+    "LR-L2": "LR-L2_l20.0001",
+    "Tree-L1": "Tree-L1_c7 seeds 0-2",
+    "Tree-L2": "Tree-L2_c3 seeds 0-2",
+    "iALS_tuned": "tau2_alpha30_l21000 seeds 0-4",
+    "iALS_reference": "tau0.5_alpha30_l2100 seeds 0-4",
+    "hybrid": "w=0.9 with the development tune-group standardization constants (hybrid.json)",
+    "LR-L2all": "LR-L2all_l20.0001",
+    "LR-L2+iALS(late)": "LR-L2+iALS_late_l20.0001",
+    "Deep-L2": "deep_c3 seeds 0-2",
+    "Deep-L2+iALS": "deep_ials_c0 seeds 0-2",
+    "Deep-L2(late)": "deep_late_c0 seeds 0-2",
+    "adapted_M1_blend": "M1_blend (lambda 0.0001, refit on all development week-1 random rows)",
+    "adapted_M2_L2_refit": "M2_L2_refit (lambda 0.001, refit on all development week-1 random rows)",
+    "adapted_M3_L2_iALS_refit": "M3_L2_iALS_refit (lambda 0.001, refit on all development week-1 random rows)",
+    "adapted_M4_L2_iALS_prior": "M4_L2_iALS_prior (lambda 0.001, refit on all development week-1 random rows)"
+  },
+  "contrasts": {
+    "primary_preregistered": "LR-L2 - tuned iALS (protocol_confirmed.json primary; confirms the development finding)",
+    "hybrid_question": "hybrid - tuned iALS (the open question from step 37); also hybrid - LR-L2",
+    "secondary": [
+      "Tree-L2 - LR-L2",
+      "Tree-L2 - Tree-L1",
+      "LR-L2 - LR-L1",
+      "LR-L2 - iALS reference",
+      "tuned iALS - iALS reference",
+      "scope B versions",
+      "pooled AUC by video degree group (descriptive)",
+      "cold-start descriptive table",
+      "seed-to-seed means"
+    ],
+    "new_method_question": "best new method - tuned iALS; best new method fixed on the tune group (seed 0) before unsealing = hybrid (candidates: {'hybrid': 0.6521664374936826, 'LR-L2+iALS': 0.6246544143203804, 'Deep-L2': 0.6113207007035992, 'Deep-L2+iALS': 0.6089905036532424}); also hybrid - LR-L2",
+    "deep_stage_secondary": [
+      "Deep-L2 - LR-L2(S_all)",
+      "Deep-L2 - tuned iALS",
+      "Deep-L2+iALS - tuned iALS",
+      "Deep-L2+iALS - Deep-L2(late)",
+      "Deep-L2+iALS - LR-L2+iALS",
+      "LR-L2+iALS - tuned iALS",
+      "LR-L2(S_all) - LR-L2(dev 6M)"
+    ]
+  },
+  "statistics": "per-user AUC (ties half); seed-averaged per user; paired user bootstrap 2000 resamples seed 2026; identical users and exposures per comparison; sample sizes with every interval",
+  "decision_rule": "+0.01 per-user AUC and 95% interval excluding 0, as before; the week-2 primary answers the main question; week-1 and all secondary contrasts are reported with their roles",
+  "procedure": [
+    "k27_confirm_prepare.py: confirmation users' frozen user tables (done; development rebuild identical)",
+    "k27_confirm.py --partition development --window week1: reproduces final.json, hybrid.json, deep_report.json (done, all passed)",
+    "k27_confirm.py --partition development --window week2: must reproduce run_dev/adapt_week2.json",
+    "then once per window: k27_confirm.py --partition confirmation --window week2 (primary) and --window week1; the script refuses to run twice"
+  ],
+  "interpretation": "confirms reproducibility on new users of the same period under the same frozen cutoff; week 2 also tests transfer across one week of staler features; not future generalization; no model change after the confirmation",
+  "revised_utc": "2026-10-23T00:51:36.301216+00:00",
+  "windows": {
+    "week2": "2022-04-29..05-08: PRIMARY confirmation window (user rule: the final primary confirmation is the confirmation users' week-2 result)",
+    "week1": "2022-04-22..04-28: reported separately (the earlier stage-1/deep-stage task)"
+  },
+  "contrasts_week2_primary": "best adapted method - tuned iALS; best adapted method fixed on week-1 development data = M3_L2_iALS_refit (selection_adapt.json)",
+  "contrasts_week2_secondary": [
+    "best adapted - hybrid",
+    "M3 - M2",
+    "M4 - M3",
+    "M2 - LR-L2(dev)",
+    "each adapted form - tuned iALS",
+    "LR-L2 - tuned iALS",
+    "hybrid - tuned iALS",
+    "Tree-L2 - LR-L2",
+    "deep-stage models (descriptive)",
+    "scope B",
+    "pooled AUC by video degree (descriptive)",
+    "cold start (descriptive)"
+  ],
+  "contrasts_week1_reported_separately": {
+    "primary_preregistered_stage1": "LR-L2(dev) - tuned iALS",
+    "new_method": "hybrid - tuned iALS",
+    "secondary": "as in v2, plus the adapted models (trained on development users' week-1 labels; a fair test on confirmation users but reported separately by the user rule)"
+  },
+  "confirmed_utc": "2026-10-23T01:09:36.454987+00:00"
+}

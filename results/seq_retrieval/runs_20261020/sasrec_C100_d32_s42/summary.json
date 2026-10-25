@@ -1,0 +1,43 @@
+{
+  "run": "sasrec_C100_d32_s42",
+  "best_epoch": 12,
+  "best_tune_recall_at_100_filtered": 0.005231269052403526,
+  "epochs_trained": 18,
+  "results_all_eligible_users": {
+    "unfiltered": {
+      "recall_at_20": 0.0014958590208312068,
+      "recall_at_50": 0.0029983132467530714,
+      "recall_at_100": 0.005331474724997599,
+      "zero_degree_slot_share": 0.0,
+      "zero_degree_hits": 0,
+      "zero_score_slot_share": 0.0,
+      "slot_share_0": 0.0,
+      "hits_0": 0,
+      "slot_share_1-2": 0.1471058091286307,
+      "hits_1-2": 5,
+      "slot_share_3-19": 0.3048755186721992,
+      "hits_3-19": 78,
+      "slot_share_>=20": 0.5480186721991701,
+      "hits_>=20": 800
+    },
+    "filtered": {
+      "recall_at_20": 0.0016884476517182005,
+      "recall_at_50": 0.0033874547730222203,
+      "recall_at_100": 0.005707745127396715,
+      "zero_degree_slot_share": 0.0,
+      "zero_degree_hits": 0,
+      "zero_score_slot_share": 0.0,
+      "slot_share_0": 0.0,
+      "hits_0": 0,
+      "slot_share_1-2": 0.15145228215767634,
+      "hits_1-2": 5,
+      "slot_share_3-19": 0.32269709543568464,
+      "hits_3-19": 92,
+      "slot_share_>=20": 0.525850622406639,
+      "hits_>=20": 859
+    }
+  },
+  "reload_reproduces_filtered_top100_first_16_users": true,
+  "parameters_finite": true,
+  "finished_utc": "2026-10-20T07:21:26.185953+00:00"
+}

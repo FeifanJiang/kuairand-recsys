@@ -1,0 +1,17 @@
+{
+  "status": "FROZEN before running (user-approved plan of 2026-10-23); runs only if time remains after the serving layer and the CF extension",
+  "question": "with the same features, row counts and fitting procedure, how does training on week-1 recommended (logged) exposures compare with training on week-1 random exposures when the target is week-2 random exposures?",
+  "training_sets": {
+    "random_week1": "the adaptation training rows (development users, week 1, main population, scope A; 98,021 rows for the refit)",
+    "logged_week1": "development users' standard exposures of week 1 (streamed from the 27K tar), sampled to match the random set cell by cell on (user, Shanghai date); a cell with fewer logged rows than needed contributes all its rows and the shortfall is recorded and not filled from other cells or users",
+    "pool_variant": "both sets restricted to random-pool videos; the random set is subsampled to the logged pool rows cell by cell with the same rule"
+  },
+  "features": "frozen at the cutoff for every row (as evaluation rows), LR-L2 standardized columns; the M2 form (no iALS input); lambda grid {1e-3, 1e-2, 1e-1}; selection on report-group week-1 random per-user AUC; refit on all development week-1 rows of each set",
+  "comparisons": [
+    "LR-L2 (6M logged rows, prequential features, days 1-15) vs M2-logged-week1 vs M2-random-week1 on week-2 random exposures",
+    "pool variant: M2-logged-pool vs M2-random-pool"
+  ],
+  "reading": "the logged-vs-random difference under identical features, rows and procedure is attributed to the label source (exposure mechanism plus the label distribution it induces); it is a controlled comparison, not a causal identification",
+  "evidence_level": "extension analysis",
+  "frozen_utc": "2026-10-24T01:43:40.646982+00:00"
+}

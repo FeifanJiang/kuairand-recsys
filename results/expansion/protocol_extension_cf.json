@@ -1,0 +1,21 @@
+{
+  "status": "FROZEN before running (user-approved plan of 2026-10-23); extension analysis: the week-2 and confirmation labels were already viewed for earlier models",
+  "question": "given the same random-exposure labels, how much does adapting the collaborative representation gain over the tuned iALS, and how much do personalized attribute features add on top?",
+  "forms": {
+    "C1_cf_interactions": "32 element-wise products u_k * v_k of the frozen tuned iALS factors (seed 0) plus the has-factors flag; ridge logistic regression; lambda in {1e-4, 1e-3, 1e-2}",
+    "C2_L2_plus_cf": "LR-L2 standardized columns (dev-6M statistics) plus the same 33 CF inputs; lambda in {1e-3, 1e-2, 1e-1}"
+  },
+  "inputs": "interaction columns standardized with mean/sd fitted on the tune-group week-1 training rows only (fixed thereafter); rows without valid factors get zero interactions and flag 0",
+  "training_and_selection": "identical to protocol_adaptation.json: fit on tune-group week-1 main-population scope-A rows, select lambda per form on report-group week-1 per-user AUC (ties within 0.0005 -> larger lambda), refit the selected lambda on all development week-1 rows",
+  "test": "development users week 2 (04-29..05-08), scope A, main population; per-user AUC; paired user bootstrap 2000 seed 2026; iALS inputs seed 0 only (interaction weights are tied to one factor basis, so no seed averaging)",
+  "contrasts": [
+    "C1 - iALS_tuned (gain from adapting the CF representation)",
+    "C2 - C1 (what attribute features add on top)",
+    "C2 - M3 (33 CF inputs vs the single iALS score)",
+    "C1 - M2",
+    "C2 - iALS_tuned"
+  ],
+  "decision_rule": "+0.01 per-user AUC and 95% interval excluding 0, as before",
+  "evidence_level": "extension analysis; original confirmation results and artifacts unchanged",
+  "frozen_utc": "2026-10-24T01:43:40.646199+00:00"
+}

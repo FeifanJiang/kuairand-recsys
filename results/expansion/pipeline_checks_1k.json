@@ -1,0 +1,29 @@
+{
+  "all_passed": false,
+  "1_random_rows_equal": true,
+  "1_rows": 10179,
+  "1_cleaning_counts": {
+    "rows_of_users": 42373,
+    "invalid": 0,
+    "full_record_duplicates": 1,
+    "rows_in_window": 10179
+  },
+  "2_video_attributes_equal": true,
+  "2_videos": 2121974,
+  "3_row_order_matches_saved": true,
+  "3_L1_max_abs_logit_diff": 7.152557373046875e-07,
+  "3_L1_logits_equal_1e-4": true,
+  "3_L2_max_abs_logit_diff": 1.0728836059570312e-06,
+  "3_L2_logits_equal_1e-4": true,
+  "3_ials_max_abs_diff": 0.0,
+  "3_ials_equal_1e-5": true,
+  "4_L1_columns_equal": true,
+  "4_L1_max_abs_coef_diff": 1.9241124391555786e-06,
+  "4_L1_coefficients_equal_1e-3": true,
+  "4_L2_columns_equal": true,
+  "4_L2_max_abs_coef_diff": 0.0014684274792671204,
+  "4_L2_coefficients_equal_1e-3": false,
+  "5_scope_A_mean_auc_equal": true,
+  "5_scope_B_mean_auc_equal": true,
+  "5_paired_L2_minus_iALS_equal": true
+}

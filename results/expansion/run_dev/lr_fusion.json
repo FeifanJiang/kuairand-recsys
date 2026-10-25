@@ -1,0 +1,30 @@
+{
+  "stage": "lr-fusion",
+  "seconds": 75.72889590263367,
+  "result": [
+    {
+      "name": "LR-L2+iALS_late_l20.0001",
+      "l2": 0.0001,
+      "train_objective": 0.47482725977897644,
+      "grad_norm": 0.00012781725672539324,
+      "training_rows": 3962057,
+      "tune_auc": 0.6246544143203804
+    },
+    {
+      "name": "LR-L2+iALS_late_l20.001",
+      "l2": 0.001,
+      "train_objective": 0.4756072759628296,
+      "grad_norm": 4.9319285608362406e-05,
+      "training_rows": 3962057,
+      "tune_auc": 0.618678261723149
+    },
+    {
+      "name": "LR-L2+iALS_late_l20.01",
+      "l2": 0.01,
+      "train_objective": 0.48021796345710754,
+      "grad_norm": 5.3870378906140104e-05,
+      "training_rows": 3962057,
+      "tune_auc": 0.6149761590775588
+    }
+  ]
+}

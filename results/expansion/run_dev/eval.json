@@ -1,0 +1,19 @@
+{
+  "stage": "eval",
+  "seconds": 10.740667819976807,
+  "result": {
+    "cleaning": {
+      "rows_of_users": 573723,
+      "invalid": 0,
+      "full_record_duplicates": 7,
+      "rows_in_window": 139567
+    },
+    "rows": 139567,
+    "scope_A_rows": 138773,
+    "by_group_rows": {
+      "tune": 70521,
+      "report": 69046
+    },
+    "T0": 1649339966592
+  }
+}

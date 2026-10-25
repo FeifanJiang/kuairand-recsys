@@ -1,0 +1,27 @@
+{
+  "selected_tau_days": 0.5,
+  "time_ials_top100_overlap_with_time_popularity_top100": 0.3672344398340249,
+  "share_of_time_ials_hits_in_time_popularity_top100": 0.523306135758645,
+  "ials_configurations": {
+    "binary": {
+      "setting": {
+        "alpha": 30.0,
+        "l2": 300.0
+      },
+      "stage": "previous",
+      "on_grid_edge": []
+    },
+    "time": {
+      "setting": {
+        "tau": 0.5,
+        "alpha": 30.0,
+        "l2": 100.0
+      },
+      "stage": "extension",
+      "on_grid_edge": [
+        "tau"
+      ]
+    }
+  },
+  "test_accessed": false
+}

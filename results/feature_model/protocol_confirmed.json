@@ -1,0 +1,114 @@
+{
+  "status": "confirmed by the user with revisions; six logistic-regression fits authorized",
+  "drafted_utc": "2026-10-21T04:16:20.990233+00:00",
+  "question": "do video features improve scoring of sparse videos in random exposures, and does personalization add value beyond them?",
+  "evidence_role": "KuaiRand-1K random validation is development data; results are exploratory; random test is not used",
+  "task": "pointwise P(long_view = 1 | exposure), evaluated on random exposures",
+  "training_data": "standard training exposures 2022-04-07 to 04-21 (5.02M rows, labels long_view)",
+  "feature_timing": {
+    "training_rows": "every statistic for a training exposure at time t uses only standard training events with time < t (same-timestamp events excluded), computed in time order; the smoothing prior p0 is also the global long-view rate before t (0.25 when no history)",
+    "evaluation_primary": "history frozen at training cutoff T for L1, L2, and iALS alike: statistics use training events only; decayed counts are aged to the exposure time and hours since the last long view use the exposure time, which adds no new information",
+    "limitation": "training rows see fresh history while evaluation rows see history frozen at T (fixed-deployment setting)",
+    "rolling_variant": "not run in this round; a later secondary experiment only",
+    "excluded_sources": [
+      "video_features_statistic (one-month averages incl. future)",
+      "visible_status (release-time snapshot)",
+      "user_features (unknown snapshot time)",
+      "random-exposure logs (never used as features)",
+      "tab and hour (request context)"
+    ],
+    "out_of_catalog_videos": "only exposure-time fields (metadata attributes, logged duration, upload age at exposure); missing history statistics take zero counts, the prior rate, and missing flags"
+  },
+  "levels": {
+    "L1_non_personalized": [
+      "logged duration (log, <=18 s flag, zero flag)",
+      "video age at exposure (log days; missing flag)",
+      "video_type AD flag, upload_type, music_type, primary tag (top 50 + other)",
+      "video before-t stats: log exposures, log long views, smoothed long-view rate (beta prior, strength 20), decayed long views (tau 0.5 d, 2 d), log hours since last long view (missing flag)",
+      "author before-t stats: same set",
+      "primary-tag before-t smoothed long-view rate"
+    ],
+    "L2_personalized": [
+      "L1 features",
+      "user before-t: log exposures, smoothed long-view rate",
+      "user x author before-t: log long views, smoothed long-view rate on that author",
+      "user x primary tag before-t: share of the user's long views with that tag, smoothed long-view rate on that tag",
+      "duration match: |log duration - mean log duration of the user's past long views|, user's share of long views on <=18 s videos"
+    ],
+    "L3_reference": "frozen time-decay iALS (five seeds) score x_u . y_v; videos outside its catalog score 0"
+  },
+  "model": {
+    "type": "logistic regression per level with intercept",
+    "objective": "mean binary log loss over training rows + l2 * ||beta||^2 (intercept unpenalized); l2 is a penalty strength, not an inverse C",
+    "grid": [
+      0.0001,
+      0.001,
+      0.01
+    ],
+    "optimizer": "full-batch L-BFGS (strong Wolfe), float64",
+    "scaling": "numeric features standardized with training-row mean and SD",
+    "categoricals": "upload_type levels with >= 1000 training rows, music_type levels, primary tag top 50 by training rows; other values -> other, missing -> missing; levels fixed on training rows",
+    "selection": "mean log loss on standard-validation exposures of tuning-half users (seed-2028 split), features frozen at T"
+  },
+  "evaluation": {
+    "scope_A_primary": "known users, random-validation exposures of videos in the training catalog: L1, L2, iALS (five seeds, per-user AUC averaged over seeds)",
+    "scope_B": "known users, all random-validation exposures including videos outside the catalog: L1, L2 only",
+    "users": "per-user AUC users (both outcomes) are recounted within each scope; every paired comparison uses identical users and exposures",
+    "primary": "scope A per-user AUC: L2 - iALS",
+    "key_ablation": "scope A per-user AUC: L2 - L1",
+    "secondary": [
+      "scope A: L1 - iALS",
+      "scope B per-user AUC: L2 - L1",
+      "pooled AUC by video group (outside catalog, degree 0, 1-2, >= 3) with user-cluster bootstrap",
+      "standard-validation report-half session GAUC for context"
+    ],
+    "statistics": "paired user bootstrap 2000 resamples seed 2026; sample sizes reported with every interval",
+    "interpretation": "if L1 beats iALS but L2 does not beat L1, conclude that video attributes and statistics help, not that personalization helps"
+  },
+  "decision_rule": "no single significant subgroup declares success; the 27K independent-user confirmation is judged from the primary and key-ablation effect sizes, interval widths, and feasibility; a practically meaningful per-user AUC gain is pre-specified as +0.01 (about 14% of popularity's 0.073 margin over chance)",
+  "confirmation_27k": "conditional: download Pure/27K, verify ID correspondence and overlap with the 1K users, isolate unused users, freeze the method, retrain on their standard logs; confirms reproducibility on new users in the same period, not future generalization",
+  "feature_coverage_on_random_validation": {
+    "outside catalog": {
+      "exposures": 3061,
+      "long_view_rate": 0.0591,
+      "has_metadata": 1.0,
+      "author_has_training_exposure": 0.968,
+      "author_has_training_long_view": 0.7818,
+      "primary_tag_has_training_long_view": 0.9954,
+      "user_long_viewed_same_author_in_training": 0.0144,
+      "duration_available": 0.968
+    },
+    "in catalog, degree 0": {
+      "exposures": 3064,
+      "long_view_rate": 0.0646,
+      "has_metadata": 1.0,
+      "author_has_training_exposure": 1.0,
+      "author_has_training_long_view": 0.845,
+      "primary_tag_has_training_long_view": 0.9876,
+      "user_long_viewed_same_author_in_training": 0.0173,
+      "duration_available": 0.9494
+    },
+    "degree 1-2": {
+      "exposures": 2299,
+      "long_view_rate": 0.08,
+      "has_metadata": 1.0,
+      "author_has_training_exposure": 1.0,
+      "author_has_training_long_view": 1.0,
+      "primary_tag_has_training_long_view": 0.9852,
+      "user_long_viewed_same_author_in_training": 0.0174,
+      "duration_available": 0.9874
+    },
+    "degree >=3": {
+      "exposures": 1755,
+      "long_view_rate": 0.1322,
+      "has_metadata": 1.0,
+      "author_has_training_exposure": 1.0,
+      "author_has_training_long_view": 1.0,
+      "primary_tag_has_training_long_view": 0.9818,
+      "user_long_viewed_same_author_in_training": 0.0228,
+      "duration_available": 0.9977
+    }
+  },
+  "test_accessed": false,
+  "confirmed_utc": "2026-10-21T04:19:39.505656+00:00"
+}

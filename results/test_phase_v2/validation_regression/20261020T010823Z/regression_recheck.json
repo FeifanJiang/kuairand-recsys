@@ -1,0 +1,18 @@
+{
+  "original_failures": [
+    "ials_binary_s42_unfiltered_per_user",
+    "ials_binary_s1_unfiltered_per_user",
+    "ials_binary_s2_unfiltered_per_user",
+    "ials_binary_s3_unfiltered_per_user",
+    "ials_binary_s4_unfiltered_per_user",
+    "ials_time_s42_unfiltered_per_user",
+    "ials_time_s1_unfiltered_per_user",
+    "ials_time_s2_unfiltered_per_user",
+    "ials_time_s3_unfiltered_per_user",
+    "ials_time_s4_unfiltered_per_user"
+  ],
+  "cause": "exact comparison between CSV-parsed saved values and in-memory values; float text round-trip differs in the last digits",
+  "recheck": "this run's per-user files (also CSV) equal the saved files exactly (max abs diff 0.0) for all 10 iALS fits",
+  "code_fix": "final_test_v2.regression_check now uses atol=1e-12 for these comparisons, as for the other checks",
+  "all_checks_pass_after_recheck": true
+}

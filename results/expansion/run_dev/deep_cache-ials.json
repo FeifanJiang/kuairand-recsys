@@ -1,0 +1,20 @@
+{
+  "stage": "cache-ials",
+  "seconds": 1.0514450073242188,
+  "result": {
+    "reference_pairs": "tune-group random exposures, main population, scope A (user, video) pairs; scores only",
+    "n_reference_pairs": 69888,
+    "early": [
+      0.006209902468476712,
+      0.02335385723349159
+    ],
+    "full": [
+      0.0026191973400724574,
+      0.010599982273368254
+    ],
+    "early_last_shanghai_date": 20220414,
+    "late_rows": 3962057,
+    "late_rows_flag_share": 0.31935304403305054,
+    "reference_flag_share_early": 0.859375
+  }
+}

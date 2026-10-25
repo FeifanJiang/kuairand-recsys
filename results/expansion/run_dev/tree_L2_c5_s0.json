@@ -1,0 +1,16 @@
+{
+  "stage": "tree_L2_c5_s0",
+  "seconds": 214.53582215309143,
+  "result": {
+    "name": "Tree-L2_c5_s0",
+    "config": {
+      "max_leaf_nodes": 63,
+      "min_samples_leaf": 100,
+      "l2_regularization": 1.0
+    },
+    "seed": 0,
+    "iterations": 453,
+    "fit_seconds": 212.22844886779785,
+    "tune_auc": 0.6115071302489995
+  }
+}

@@ -1,0 +1,9 @@
+{
+ "training_exposures": 5023746,
+ "share_of_exposures_on_pool_videos": 0.007998812041850841,
+ "training_long_views": 1329197,
+ "share_of_long_views_on_pool_videos": 0.010446908923207019,
+ "share_of_users_with_no_pool_long_view": 0.07426246185147507,
+ "median_pool_long_views_per_user": 9.0,
+ "median_all_long_views_per_user": 1094.0
+}

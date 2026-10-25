@@ -1,0 +1,143 @@
+{
+  "previous_run": "reports/ials_confidence/20261019T073602Z",
+  "extension": {
+    "time": [
+      {
+        "tau": 0.5,
+        "alpha": 10,
+        "l2": 30
+      },
+      {
+        "tau": 0.5,
+        "alpha": 10,
+        "l2": 100
+      },
+      {
+        "tau": 0.5,
+        "alpha": 10,
+        "l2": 300
+      },
+      {
+        "tau": 0.5,
+        "alpha": 30,
+        "l2": 30
+      },
+      {
+        "tau": 0.5,
+        "alpha": 30,
+        "l2": 100
+      },
+      {
+        "tau": 0.5,
+        "alpha": 30,
+        "l2": 300
+      },
+      {
+        "tau": 0.5,
+        "alpha": 100,
+        "l2": 30
+      },
+      {
+        "tau": 0.5,
+        "alpha": 100,
+        "l2": 100
+      },
+      {
+        "tau": 0.5,
+        "alpha": 100,
+        "l2": 300
+      },
+      {
+        "tau": 1,
+        "alpha": 10,
+        "l2": 30
+      },
+      {
+        "tau": 1,
+        "alpha": 10,
+        "l2": 100
+      },
+      {
+        "tau": 1,
+        "alpha": 10,
+        "l2": 300
+      },
+      {
+        "tau": 1,
+        "alpha": 30,
+        "l2": 30
+      },
+      {
+        "tau": 1,
+        "alpha": 30,
+        "l2": 100
+      },
+      {
+        "tau": 1,
+        "alpha": 30,
+        "l2": 300
+      },
+      {
+        "tau": 1,
+        "alpha": 100,
+        "l2": 30
+      },
+      {
+        "tau": 1,
+        "alpha": 100,
+        "l2": 100
+      },
+      {
+        "tau": 1,
+        "alpha": 100,
+        "l2": 300
+      }
+    ],
+    "binary": [
+      {
+        "alpha": 10,
+        "l2": 1000
+      },
+      {
+        "alpha": 10,
+        "l2": 3000
+      },
+      {
+        "alpha": 30,
+        "l2": 1000
+      },
+      {
+        "alpha": 30,
+        "l2": 3000
+      },
+      {
+        "alpha": 100,
+        "l2": 1000
+      },
+      {
+        "alpha": 100,
+        "l2": 3000
+      },
+      {
+        "alpha": 300,
+        "l2": 1000
+      },
+      {
+        "alpha": 300,
+        "l2": 3000
+      }
+    ]
+  },
+  "seeds": [
+    42,
+    1,
+    2,
+    3,
+    4
+  ],
+  "selection": "tuning half only (seed 2028); frozen before stages 2 and 3",
+  "random_check": "per-user AUC on random_validation for known users and in-catalog videos; seed-averaged per user; paired bootstrap; no tuning",
+  "seen_filter": "seen = training long-view videos of the user, frozen at cutoff; full-catalog re-ranking; same targets; all models",
+  "budget_note": "time decay searched 36 configurations in total, binary 24",
+  "test_accessed": false
+}

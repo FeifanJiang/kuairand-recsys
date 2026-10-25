@@ -1,0 +1,16 @@
+{
+  "stage": "tree_L1_c7_s1",
+  "seconds": 113.63644218444824,
+  "result": {
+    "name": "Tree-L1_c7_s1",
+    "config": {
+      "max_leaf_nodes": 63,
+      "min_samples_leaf": 1000,
+      "l2_regularization": 1.0
+    },
+    "seed": 1,
+    "iterations": 176,
+    "fit_seconds": 110.84422492980957,
+    "tune_auc": 0.5696277669805495
+  }
+}

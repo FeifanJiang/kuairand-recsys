@@ -1,0 +1,45 @@
+{
+ "random_validation_known_user_exposures": 10179,
+ "by_group": {
+  "outside catalog": {
+   "exposures": 3061,
+   "long_view_rate": 0.0591,
+   "has_metadata": 1.0,
+   "author_has_training_exposure": 0.968,
+   "author_has_training_long_view": 0.7818,
+   "primary_tag_has_training_long_view": 0.9954,
+   "user_long_viewed_same_author_in_training": 0.0144,
+   "duration_available": 0.968
+  },
+  "in catalog, degree 0": {
+   "exposures": 3064,
+   "long_view_rate": 0.0646,
+   "has_metadata": 1.0,
+   "author_has_training_exposure": 1.0,
+   "author_has_training_long_view": 0.845,
+   "primary_tag_has_training_long_view": 0.9876,
+   "user_long_viewed_same_author_in_training": 0.0173,
+   "duration_available": 0.9494
+  },
+  "degree 1-2": {
+   "exposures": 2299,
+   "long_view_rate": 0.08,
+   "has_metadata": 1.0,
+   "author_has_training_exposure": 1.0,
+   "author_has_training_long_view": 1.0,
+   "primary_tag_has_training_long_view": 0.9852,
+   "user_long_viewed_same_author_in_training": 0.0174,
+   "duration_available": 0.9874
+  },
+  "degree >=3": {
+   "exposures": 1755,
+   "long_view_rate": 0.1322,
+   "has_metadata": 1.0,
+   "author_has_training_exposure": 1.0,
+   "author_has_training_long_view": 1.0,
+   "primary_tag_has_training_long_view": 0.9818,
+   "user_long_viewed_same_author_in_training": 0.0228,
+   "duration_available": 0.9977
+  }
+ }
+}

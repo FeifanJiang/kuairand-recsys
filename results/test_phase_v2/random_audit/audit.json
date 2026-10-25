@@ -1,0 +1,67 @@
+{
+  "checks": {
+    "pair_scores_item_only": true,
+    "pair_scores_user_and_item": true,
+    "user_ids_map_back": true,
+    "video_ids_map_back": true,
+    "popularity_auc_matches_saved": true,
+    "time_popularity_auc_matches_saved": true,
+    "rank_auc_equals_pairwise_auc_on_50_users": true,
+    "all_comparisons_use_same_user_count": true
+  },
+  "all_checks_passed": true,
+  "structure": {
+    "raw_exposures": 32807,
+    "dropped_unknown_user": 258,
+    "dropped_outside_catalog_known_user": 9151,
+    "eligible_exposures": 23398,
+    "eligible_users": 973,
+    "users_with_both_outcomes": 598,
+    "users_only_negatives": 375,
+    "users_only_positives": 0,
+    "exposures_in_auc_users": 18949,
+    "per_auc_user_quantiles": {
+      "exposures": [
+        7.0,
+        19.0,
+        71.0
+      ],
+      "positives": [
+        1.0,
+        2.0,
+        9.0
+      ],
+      "negatives": [
+        5.0,
+        15.0,
+        63.3
+      ]
+    },
+    "auc_users_with_1_positive_share": 0.34782608695652173,
+    "per_user_popularity_auc_sd": 0.2341153587845669
+  },
+  "popularity_margin_over_chance": 0.07318784597219785,
+  "seed_mean_sd_auc": {
+    "popularity": [
+      0.5731878459721979,
+      0.0
+    ],
+    "time_popularity": [
+      0.5663069903925679,
+      0.0
+    ],
+    "bpr": [
+      0.5858001228503935,
+      0.0017698279891269735
+    ],
+    "ials_binary": [
+      0.5774148916461708,
+      0.00573519643861176
+    ],
+    "ials_time": [
+      0.5781240519864673,
+      0.003688047995303228
+    ]
+  },
+  "limits": "learned-model scores were not saved; their mapping is verified by code path and synthetic tests, not by recomputing scores"
+}

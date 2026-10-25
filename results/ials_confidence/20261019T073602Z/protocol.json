@@ -1,0 +1,236 @@
+{
+  "preference": "p_uv = 1 for any training long view",
+  "grids": {
+    "binary": [
+      {
+        "alpha": 10,
+        "l2": 10
+      },
+      {
+        "alpha": 10,
+        "l2": 30
+      },
+      {
+        "alpha": 10,
+        "l2": 100
+      },
+      {
+        "alpha": 10,
+        "l2": 300
+      },
+      {
+        "alpha": 30,
+        "l2": 10
+      },
+      {
+        "alpha": 30,
+        "l2": 30
+      },
+      {
+        "alpha": 30,
+        "l2": 100
+      },
+      {
+        "alpha": 30,
+        "l2": 300
+      },
+      {
+        "alpha": 100,
+        "l2": 10
+      },
+      {
+        "alpha": 100,
+        "l2": 30
+      },
+      {
+        "alpha": 100,
+        "l2": 100
+      },
+      {
+        "alpha": 100,
+        "l2": 300
+      },
+      {
+        "alpha": 300,
+        "l2": 10
+      },
+      {
+        "alpha": 300,
+        "l2": 30
+      },
+      {
+        "alpha": 300,
+        "l2": 100
+      },
+      {
+        "alpha": 300,
+        "l2": 300
+      }
+    ],
+    "frequency": [
+      {
+        "alpha": 10,
+        "l2": 10
+      },
+      {
+        "alpha": 10,
+        "l2": 30
+      },
+      {
+        "alpha": 10,
+        "l2": 100
+      },
+      {
+        "alpha": 10,
+        "l2": 300
+      },
+      {
+        "alpha": 30,
+        "l2": 10
+      },
+      {
+        "alpha": 30,
+        "l2": 30
+      },
+      {
+        "alpha": 30,
+        "l2": 100
+      },
+      {
+        "alpha": 30,
+        "l2": 300
+      },
+      {
+        "alpha": 100,
+        "l2": 10
+      },
+      {
+        "alpha": 100,
+        "l2": 30
+      },
+      {
+        "alpha": 100,
+        "l2": 100
+      },
+      {
+        "alpha": 100,
+        "l2": 300
+      },
+      {
+        "alpha": 300,
+        "l2": 10
+      },
+      {
+        "alpha": 300,
+        "l2": 30
+      },
+      {
+        "alpha": 300,
+        "l2": 100
+      },
+      {
+        "alpha": 300,
+        "l2": 300
+      }
+    ],
+    "time": [
+      {
+        "tau": 2,
+        "alpha": 10,
+        "l2": 30
+      },
+      {
+        "tau": 2,
+        "alpha": 10,
+        "l2": 100
+      },
+      {
+        "tau": 2,
+        "alpha": 10,
+        "l2": 300
+      },
+      {
+        "tau": 2,
+        "alpha": 30,
+        "l2": 30
+      },
+      {
+        "tau": 2,
+        "alpha": 30,
+        "l2": 100
+      },
+      {
+        "tau": 2,
+        "alpha": 30,
+        "l2": 300
+      },
+      {
+        "tau": 2,
+        "alpha": 100,
+        "l2": 30
+      },
+      {
+        "tau": 2,
+        "alpha": 100,
+        "l2": 100
+      },
+      {
+        "tau": 2,
+        "alpha": 100,
+        "l2": 300
+      },
+      {
+        "tau": 7,
+        "alpha": 10,
+        "l2": 30
+      },
+      {
+        "tau": 7,
+        "alpha": 10,
+        "l2": 100
+      },
+      {
+        "tau": 7,
+        "alpha": 10,
+        "l2": 300
+      },
+      {
+        "tau": 7,
+        "alpha": 30,
+        "l2": 30
+      },
+      {
+        "tau": 7,
+        "alpha": 30,
+        "l2": 100
+      },
+      {
+        "tau": 7,
+        "alpha": 30,
+        "l2": 300
+      },
+      {
+        "tau": 7,
+        "alpha": 100,
+        "l2": 30
+      },
+      {
+        "tau": 7,
+        "alpha": 100,
+        "l2": 100
+      },
+      {
+        "tau": 7,
+        "alpha": 100,
+        "l2": 300
+      }
+    ]
+  },
+  "dim": 32,
+  "iterations": 15,
+  "split": "validation users 50/50 with seed 2028; tuning half selects by Recall@100 per scheme",
+  "final": "selected configuration per scheme rerun with seeds 1-4; compared on the report half with paired bootstrap",
+  "regression": "binary alpha=30, l2=100, seed 42 equals the saved train_mf.py top-100",
+  "edge_rule": "report edge winners; no automatic extension",
+  "test_accessed": false
+}

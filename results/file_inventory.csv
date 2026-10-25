@@ -1,0 +1,7 @@
+file,rows,columns,bytes,missing_keys,duplicate_keys
+log_random_4_22_to_5_08_1k.csv,43028,19,3086015,,
+log_standard_4_08_to_4_21_1k.csv,5055984,19,373670312,,
+log_standard_4_22_to_5_08_1k.csv,6657061,19,492303531,,
+user_features_1k.csv,1000,31,127533,0.0,0.0
+video_features_basic_1k.csv,4371868,12,376887905,0.0,0.0
+video_features_statistic_1k.csv,4371868,52,3370628629,0.0,0.0

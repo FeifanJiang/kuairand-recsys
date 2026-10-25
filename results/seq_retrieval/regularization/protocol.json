@@ -1,0 +1,43 @@
+{
+  "status": "frozen before screening runs",
+  "frozen_utc": "2026-10-20T15:10:29.906160+00:00",
+  "question": "does a fixed Gaussian prior on the embedding tables improve validation recall of the selected pooling and SASRec configurations?",
+  "fixed_configurations": {
+    "pool": {
+      "C": 100,
+      "K": 50,
+      "dim": 64
+    },
+    "sasrec": {
+      "C": 50,
+      "K": 25,
+      "dim": 64,
+      "blocks": 2,
+      "heads": 1,
+      "dropout": 0.2
+    }
+  },
+  "penalty": {
+    "objective_per_batch": "(sum of batch sampled-softmax losses + embed_l2 * P_b) / k_b, with k_b targets in the batch",
+    "P_b": "sum over the batch's input-row touches of |e_v|^2 / c_in(v) plus sum over output-row touches (positives and negative draws) of |w_v|^2 / c_out(v)",
+    "c_in": "occurrences of the row in all training windows per epoch (deterministic)",
+    "c_out": "positive occurrences per epoch + m T / N expected negative draws",
+    "epoch_total": "about (1/mean k)(sum of all losses + embed_l2 (sum |input rows|^2 + sum |output rows|^2)): exact for input rows, in expectation for output rows",
+    "meaning": "embed_l2 is the precision factor of a fixed Gaussian prior relative to the summed epoch loss; not comparable to AdamW weight decay, which is decoupled; SparseAdam has no weight decay",
+    "scope": "both embedding tables, same embed_l2; transformer and LayerNorm parameters unpenalized; fixed-zero videos have no rows"
+  },
+  "levels": [
+    0,
+    1,
+    10,
+    100
+  ],
+  "control": "embed_l2 = 0 = runs_20261020 (same code path; serial bitwise regression in implementation_checks.json)",
+  "budget": "unchanged: max 20 epochs, tuning-half Recall@100 (filtered) every 2 epochs, stop after 3 evaluations without improvement, best checkpoint",
+  "logged": "training loss (data term) and penalized objective each epoch; tuning-half Recall@100 and row-norm quantiles (p50, p90, p99, mean for degree <= 2 and >= 20) of both tables at each evaluation",
+  "screening": "seed 42; select per encoder the level with the best tuning-half Recall@100 among {0, 1, 10, 100}",
+  "confirmation": "only if the selected level is nonzero and beats embed_l2 = 0 on the tuning half by more than the step-23 report-half seed SD (pool 0.108 pp, SASRec 0.148 pp): seeds 1-4, compared with the five embed_l2 = 0 seeds on the report half (paired bootstrap, 2000, seed 2026)",
+  "reproducibility": "runs execute two at a time; concurrent runs are not bitwise reproducible (float accumulation order), serial runs are",
+  "test_accessed": false,
+  "outputs": "reports/seq_retrieval/regularization/runs/, artifacts/seq_retrieval/runs/"
+}

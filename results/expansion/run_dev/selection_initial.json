@@ -1,0 +1,56 @@
+{
+  "LR-L1": {
+    "name": "LR-L1_l20.0001",
+    "l2": 0.0001,
+    "train_objective": 0.5161343812942505,
+    "grad_norm": 0.00010984054097207263,
+    "tune_auc": 0.5681025463448738
+  },
+  "LR-L2": {
+    "name": "LR-L2_l20.0001",
+    "l2": 0.0001,
+    "train_objective": 0.47207891941070557,
+    "grad_norm": 0.000272192555712536,
+    "tune_auc": 0.6232837836735654
+  },
+  "Tree-L1": {
+    "name": "Tree-L1_c7_s0",
+    "config": {
+      "max_leaf_nodes": 63,
+      "min_samples_leaf": 1000,
+      "l2_regularization": 1.0
+    },
+    "seed": 0,
+    "iterations": 237,
+    "fit_seconds": 100.27404618263245,
+    "tune_auc": 0.5709429400883308
+  },
+  "Tree-L2": {
+    "name": "Tree-L2_c3_s0",
+    "config": {
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 1000,
+      "l2_regularization": 1.0
+    },
+    "seed": 0,
+    "iterations": 1336,
+    "fit_seconds": 402.6968731880188,
+    "tune_auc": 0.6135901902596205
+  },
+  "iALS_grid": {
+    "name": "iALS_tau2_alpha10_l2300_s0",
+    "tau": 2.0,
+    "alpha": 10.0,
+    "l2": 300.0,
+    "seed": 0,
+    "tune_auc": 0.644055270733498
+  },
+  "iALS_extension_jobs": [
+    "ials_tau2_alpha3_l230_s0",
+    "ials_tau2_alpha3_l2100_s0",
+    "ials_tau2_alpha3_l2300_s0",
+    "ials_tau2_alpha10_l21000_s0",
+    "ials_tau2_alpha30_l21000_s0",
+    "ials_tau2_alpha100_l21000_s0"
+  ]
+}

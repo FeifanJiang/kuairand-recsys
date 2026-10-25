@@ -1,0 +1,14 @@
+{
+  "seed": 20261021,
+  "universe": "Pure user_features minus 1K-mapped users",
+  "labels_read": false,
+  "users_total_pure": 27285,
+  "users_excluded_1k": 1000,
+  "users_unused": 26285,
+  "counts": {
+    "confirmation": 13143,
+    "development": 13142
+  },
+  "csv_sha256": "130edbca1294eb9db4bd4634671291c754e0edc77549db5b4384f7335e9bc4ea",
+  "map_column_used": "user_id_pure"
+}

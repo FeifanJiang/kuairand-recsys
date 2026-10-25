@@ -1,0 +1,10 @@
+{
+  "seed": 20261022,
+  "source": "development users of expansion_users.csv",
+  "labels_read": false,
+  "counts": {
+    "report": 6571,
+    "tune": 6571
+  },
+  "csv_sha256": "347fab092232de10c459b3d348ad3d9d3f15f88d7dec0e1d1b2db4111a780a29"
+}

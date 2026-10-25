@@ -1,0 +1,15 @@
+{
+  "selected": {
+    "pool": {
+      "encoder": "pool",
+      "C": 100,
+      "dim": 64
+    },
+    "sasrec": {
+      "encoder": "sasrec",
+      "C": 50,
+      "dim": 64
+    }
+  },
+  "rule": "best tuning-half Recall@100 (filtered) at the checkpoint, seed 42"
+}

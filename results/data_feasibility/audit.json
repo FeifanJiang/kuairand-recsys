@@ -1,0 +1,78 @@
+{
+ "Q1_basic": {
+  "catalog_videos": 2120292,
+  "training_cutoff_local": "2022-04-21 23:59:59.026000",
+  "upload_dt_missing": 1.6507160334519963e-05,
+  "upload_after_training_cutoff": 0,
+  "upload_date_after_first_training_exposure": 0,
+  "visible_status_counts": {
+   "0.0": 2109793,
+   "1.0": 10437,
+   "3.0": 59,
+   "nan": 3
+  },
+  "visible_status_nonzero_share": {
+   "degree_0": 0.005869308894069727,
+   "degree_ge1": 0.0027692268471603476
+  },
+  "author_id_missing": 0.0,
+  "video_type_missing": 0.0,
+  "upload_type_missing": 0.0,
+  "video_duration_missing": 0.12152807254849804,
+  "server_width_missing": 2.3581657620742804e-06,
+  "server_height_missing": 2.3581657620742804e-06,
+  "music_id_missing": 0.0,
+  "music_type_missing": 0.014327743537210912,
+  "tag_missing": 0.026040281244281448
+ },
+ "Q2_random_validation": {
+  "raw_exposures": 10220,
+  "raw_users": 683,
+  "raw_videos": 5586,
+  "raw_long_view_rate": 0.07827788649706457,
+  "unknown_user_exposures": 41,
+  "known_user_outside_catalog_exposures": 3061,
+  "eligible_exposures": 7118,
+  "eligible_users": 638,
+  "eligible_positives": 614,
+  "eligible_negatives": 6504,
+  "eligible_long_view_rate": 0.08626018544534982,
+  "users_with_both_outcomes": 215,
+  "exposures_of_those_users": 4867,
+  "positives_per_auc_user_p10_p50_p90": [
+   1.0,
+   2.0,
+   5.0
+  ],
+  "exposures_per_auc_user_p10_p50_p90": [
+   4.0,
+   12.0,
+   48.599999999999994
+  ],
+  "auc_users_with_one_positive": 0.4558139534883721,
+  "eligible_videos": 3894,
+  "tab_share": {
+   "1": 0.9809,
+   "11": 0.0146,
+   "2": 0.0032,
+   "14": 0.0013
+  },
+  "date_range": [
+   20220422,
+   20220428
+  ],
+  "video_training_degree_share": {
+   "0": 0.4304579938184883,
+   "1-2": 0.32298398426524305,
+   "3-19": 0.2320876650744591,
+   ">=20": 0.014470356841809497
+  },
+  "eligible_videos_also_in_random_test": 0.9722650231124808,
+  "random_pool_videos_1k": 7388,
+  "random_pool_videos_in_training_catalog": 0.6997834325933947
+ },
+ "Q1_statistic": {
+  "has_date_column": false,
+  "n_columns": 52
+ }
+}

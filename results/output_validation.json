@@ -1,0 +1,36 @@
+{
+  "strict_time_order": true,
+  "total_rows_match": true,
+  "files": [
+    {
+      "file": "train.csv.gz",
+      "rows": 5023746,
+      "gzip_readable": true,
+      "counts_labels_dates_match": true
+    },
+    {
+      "file": "validation.csv.gz",
+      "rows": 2503783,
+      "gzip_readable": true,
+      "counts_labels_dates_match": true
+    },
+    {
+      "file": "test.csv.gz",
+      "rows": 4091292,
+      "gzip_readable": true,
+      "counts_labels_dates_match": true
+    },
+    {
+      "file": "random_validation.csv.gz",
+      "rows": 10220,
+      "gzip_readable": true,
+      "counts_labels_dates_match": true
+    },
+    {
+      "file": "random_test.csv.gz",
+      "rows": 32807,
+      "gzip_readable": true,
+      "counts_labels_dates_match": true
+    }
+  ]
+}

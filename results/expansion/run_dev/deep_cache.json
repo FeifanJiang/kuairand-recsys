@@ -1,0 +1,53 @@
+{
+  "stage": "cache",
+  "seconds": 47.00969123840332,
+  "result": {
+    "rows": 8000000,
+    "numeric": [
+      "log_duration",
+      "short_le_18s",
+      "zero_duration",
+      "log_video_age",
+      "video_age_missing",
+      "is_ad",
+      "v_log_exposures",
+      "v_log_long_views",
+      "v_rate",
+      "v_log_decay0.5",
+      "v_log_decay2",
+      "v_log_hours_since_long_view",
+      "v_no_long_view_yet",
+      "a_log_exposures",
+      "a_log_long_views",
+      "a_rate",
+      "a_log_decay0.5",
+      "a_log_decay2",
+      "a_log_hours_since_long_view",
+      "a_no_long_view_yet",
+      "tag_log_exposures",
+      "tag_rate",
+      "u_log_exposures",
+      "u_rate",
+      "ua_log_exposures",
+      "ua_log_long_views",
+      "ua_rate",
+      "ut_log_long_views",
+      "ut_share_of_user_long_views",
+      "ut_rate",
+      "duration_gap_to_user_mean",
+      "user_has_no_long_view",
+      "user_short_long_view_share"
+    ],
+    "categorical": [
+      "upload_type",
+      "music_type",
+      "tag1"
+    ],
+    "cat_sizes": [
+      22,
+      8,
+      51
+    ],
+    "late_rows": 3962057
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "regenerated_unfiltered_equals_saved": {
+    "lsm_s42": true,
+    "lsm_s1": true,
+    "lsm_s2": true,
+    "lsm_s3": true,
+    "lsm_s4": true,
+    "bpr_s42": true,
+    "bpr_s1": true,
+    "bpr_s2": true,
+    "bpr_s3": true,
+    "bpr_s4": true
+  },
+  "target_pairs": 194133,
+  "targets_unreachable_after_filter": 15,
+  "unreachable_share": 7.726661618581077e-05
+}

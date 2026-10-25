@@ -1,0 +1,46 @@
+{
+  "stage": "train",
+  "seconds": 57.072433948516846,
+  "result": {
+    "name": "deep_ials_c5_s0",
+    "model": "deep_ials",
+    "config": {
+      "lr": 0.0003,
+      "dropout": 0.0,
+      "emb_l2": 1e-05
+    },
+    "config_index": 5,
+    "seed": 0,
+    "curve": [
+      {
+        "epoch": 1,
+        "train_log_loss": 0.4821791242413786,
+        "holdout_log_loss": 0.4672977337383954,
+        "seconds": 13.27486801147461
+      },
+      {
+        "epoch": 2,
+        "train_log_loss": 0.45941927919717374,
+        "holdout_log_loss": 0.4682019517254952,
+        "seconds": 17.09746813774109
+      },
+      {
+        "epoch": 3,
+        "train_log_loss": 0.44105737401601053,
+        "holdout_log_loss": 0.47573558782937014,
+        "seconds": 15.162032842636108
+      }
+    ],
+    "best_epoch": 1,
+    "best_holdout_log_loss": 0.4672977337383954,
+    "epochs_run": 3,
+    "vocab_sizes": {
+      "user": 26904,
+      "video": 137880,
+      "author": 132466
+    },
+    "training_rows": 3565851,
+    "holdout_rows": 396206,
+    "tune_auc": 0.6060645963320314
+  }
+}

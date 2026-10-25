@@ -1,0 +1,36 @@
+{
+ "columns_identical": true,
+ "rows_1k": 43028,
+ "rows_pure": 1186059,
+ "users_1k": 1000,
+ "users_pure": 27285,
+ "videos_1k": 7388,
+ "videos_pure": 7583,
+ "date_range_1k": [
+  20220422,
+  20220508
+ ],
+ "date_range_pure": [
+  20220422,
+  20220508
+ ],
+ "pure_fingerprint_unique_share": 0.9999915686451403,
+ "1k_rows_with_exactly_one_pure_match": 0.9999535186390257,
+ "1k_rows_with_no_match": 0,
+ "user_map_pairs": 1000,
+ "1k_users_mapped": 1000,
+ "each_1k_user_one_pure_user": true,
+ "each_pure_user_one_1k_user": true,
+ "video_map_one_to_one": true,
+ "video_ids_identical_across_versions": true,
+ "mapped_users_identical_user_features": 1.0,
+ "1k_standard_pool_rows_for_mapped_users": 40726,
+ "found_in_pure_standard": 1.0,
+ "pure_standard_rows_4_08_to_4_21": 1141112,
+ "pure_standard_users": 26210,
+ "pure_standard_videos": 7538,
+ "unused_users_in_pure_random": 26285,
+ "unused_random_rows": 1143031,
+ "unused_random_long_view_rate": 0.08499157065731376,
+ "unused_users_with_both_outcomes": 17706
+}

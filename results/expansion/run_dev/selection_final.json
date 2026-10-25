@@ -1,0 +1,72 @@
+{
+  "LR-L1": {
+    "name": "LR-L1_l20.0001",
+    "l2": 0.0001,
+    "train_objective": 0.5161343812942505,
+    "grad_norm": 0.00010984054097207263,
+    "tune_auc": 0.5681025463448738
+  },
+  "LR-L2": {
+    "name": "LR-L2_l20.0001",
+    "l2": 0.0001,
+    "train_objective": 0.47207891941070557,
+    "grad_norm": 0.000272192555712536,
+    "tune_auc": 0.6232837836735654
+  },
+  "Tree-L1": {
+    "name": "Tree-L1_c7_s0",
+    "config": {
+      "max_leaf_nodes": 63,
+      "min_samples_leaf": 1000,
+      "l2_regularization": 1.0
+    },
+    "seed": 0,
+    "iterations": 237,
+    "fit_seconds": 100.27404618263245,
+    "tune_auc": 0.5709429400883308
+  },
+  "Tree-L2": {
+    "name": "Tree-L2_c3_s0",
+    "config": {
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 1000,
+      "l2_regularization": 1.0
+    },
+    "seed": 0,
+    "iterations": 1336,
+    "fit_seconds": 402.6968731880188,
+    "tune_auc": 0.6135901902596205
+  },
+  "iALS_tuned": {
+    "name": "iALS_tau2_alpha30_l21000_s0",
+    "tau": 2.0,
+    "alpha": 30.0,
+    "l2": 1000.0,
+    "seed": 0,
+    "tune_auc": 0.6470533203716959
+  },
+  "iALS_reference": {
+    "name": "iALS_tau0.5_alpha30_l2100_s0",
+    "tau": 0.5,
+    "alpha": 30.0,
+    "l2": 100.0,
+    "seed": 0,
+    "tune_auc": 0.6184361947809125
+  },
+  "main_L2_method": "LR-L2",
+  "main_L2_rule": "seed-0 tune AUC; Tree-L2 only if it exceeds LR-L2 by more than 0.0005",
+  "seed_jobs": [
+    "tree_L1_c7_s1",
+    "tree_L1_c7_s2",
+    "tree_L2_c3_s1",
+    "tree_L2_c3_s2",
+    "ials_tau0.5_alpha30_l2100_s1",
+    "ials_tau0.5_alpha30_l2100_s2",
+    "ials_tau0.5_alpha30_l2100_s3",
+    "ials_tau0.5_alpha30_l2100_s4",
+    "ials_tau2_alpha30_l21000_s1",
+    "ials_tau2_alpha30_l21000_s2",
+    "ials_tau2_alpha30_l21000_s3",
+    "ials_tau2_alpha30_l21000_s4"
+  ]
+}

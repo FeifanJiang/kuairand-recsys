@@ -1,0 +1,99 @@
+{
+  "status": "DRAFT v2 - revised per user comments (embedding regularization, fixed reference pairs for iALS scaling, late-rows control at the selected configuration); awaiting the go",
+  "drafted_utc": "2026-10-22T06:10:54.202300+00:00",
+  "question": [
+    "does a DLRM-style deep ranker (ID embeddings + the L2 features), trained on all users' pre-cutoff standard exposures, beat tuned iALS on per-user AUC for users with history?",
+    "does feeding the iALS score into that ranker (nonlinear fusion with a temporal holdout) beat tuned iALS, and the linear hybrid?"
+  ],
+  "training_sample_S_all": {
+    "users": "all 26,904 users with pre-cutoff exposures (development, confirmation and 1K users): their pre-cutoff standard logs are allowed; user-ID embeddings must exist for confirmation users, as iALS factors do",
+    "draw": "uniform draw per row, seed 20261024, nested ranking, first 8,000,000 rows (memory limit of the feature build)",
+    "features": "prequential, strictly earlier history of all users, same code (k27_features.py --users all)",
+    "why_not_the_dev_6M_sample": "a model trained on development users only has no user embedding for confirmation users"
+  },
+  "models": {
+    "LR-L2(S_all)": "control for the training-sample change: same LR-L2 recipe, l2 grid {1e-4,1e-3,1e-2}, tune-selected",
+    "Deep-L2": {
+      "inputs": "36 numeric L2 features standardized with S_all training mean/sd (fitted once); embeddings for upload_type (4), music_type (4), tag1 (8) with the L2 levels; ID embeddings of dimension 32 (fixed) for user (26,904 + unknown), video (vocabulary = videos with >= 5 S_all training rows, about 0.3M covering ~55% of rows; others -> rare), author (>= 5 rows, about 0.24M covering ~83%; others -> rare)",
+      "architecture": "DLRM-style: dense block concat(numeric, categorical embeddings) -> MLP [128, d]; pairwise dot products among {dense, user, video, author} (6); top MLP on concat(dense, 6 dots, user, video, author) -> [128, 64] -> logit; ReLU; dropout p on the top MLP",
+      "training": "BCE, Adam, batch 4096, <= 10 epochs; internal early stopping on a stratified random 10% of the training rows (seed 0) by log loss, patience 2, best epoch restored (internal control, not a generalization estimate)",
+      "grid": {
+        "lr": [
+          0.001,
+          0.0003
+        ],
+        "dropout": [
+          0.0,
+          0.3
+        ],
+        "emb_l2": [
+          1e-06,
+          1e-05
+        ],
+        "d": "fixed 32"
+      },
+      "tie_rule": "within 0.0005 -> larger emb_l2, then larger dropout, then smaller lr",
+      "seeds": "0 for selection; 1, 2 after selection (repeated-run statistic)",
+      "embedding_regularization": "fixed Gaussian prior lambda_emb * sum over all rows of the user / video / author tables of ||e||^2, added to the mean BCE; applied through the rows touched in each batch with expected-touch normalization (batch penalty = lambda_emb * n_batches * sum_i sum_tables ||e(id_i)||^2 / touches(id_i), so that the per-epoch total equals exactly n_batches * lambda_emb * sum ||e||^2 for any batch sizes) (same scheme as the sequence-retrieval experiment); ID tables use SparseAdam, everything else Adam; the small categorical embeddings and the MLP weights are not penalized (dropout on the top MLP); lambda_emb grid values are a first-version guess of the scale: per touch the penalty-to-data gradient ratio is about 2 * lambda_emb * N / touches, i.e. weak for frequent ids and strong for rare ones; a selected value on the grid edge is recorded, not extended"
+    },
+    "Deep-L2+iALS": {
+      "iALS_early": "tuned hyperparameters (tau 2, alpha 30, l2 1000, k 32, 15 iterations), seed 0, trained on long views with Asia/Shanghai date <= 2022-04-14",
+      "extra_inputs": "the iALS score x_u.y_v (0 when the user or video has no factors) and a has-factors indicator; only rotation-invariant quantities, never raw factors (factors of different fits live in different coordinates)",
+      "training_rows": "S_all rows with Asia/Shanghai date >= 2022-04-15 (~4.0M rows, 49.6% of S_all): every training row's iALS input comes from strictly earlier data (gap 0-7 days); at evaluation the input is the full tuned iALS (seed 0) score, gap 1-7 days",
+      "score_standardization": "both iALS models are scored on the same fixed, label-free reference pairs: the (user, video) pairs of the tune-group random exposures in the main population and scope A; each model's mean and SD on these pairs are fixed constants: training rows use (early score - mean_early) / sd_early, evaluation rows (full score - mean_full) / sd_full; the exposure-distribution change is thus kept out of the scaling; the early-vs-full model difference remains and is recorded as a limitation",
+      "grid_selection_seeds": "as Deep-L2 (same 8-point grid incl. emb_l2)"
+    },
+    "controls_at_selected_configurations_only": {
+      "Deep-L2(late rows)": "the fusion model's selected configuration, training settings, holdout split, late rows and seeds, with only the iALS score and its indicator removed (3 seeds, no grid): answers whether adding the collaborative score helps under one fixed setting",
+      "LR-L2+iALS(late rows)": "linear fusion with the same temporal holdout, l2 grid tune-selected: tells whether the nonlinear part matters"
+    },
+    "not_included": [
+      "multi-task auxiliary heads (would need is_like/is_follow in the event store; optional single ablation if the user wants it)",
+      "sequence/attention user-behaviour modelling",
+      "hashing of IDs (frequency threshold + rare bucket instead)",
+      "re-tuning iALS"
+    ]
+  },
+  "evaluation": {
+    "rows": "unchanged: development random exposures 04-22..04-28, frozen-at-cutoff history, main population, scope A primary",
+    "selection": "tune group, seed 0, main-population scope-A mean per-user AUC, for every grid and for the best new method",
+    "report_group": "development feedback (third viewing); evaluated once per frozen model with all seeds",
+    "contrasts": {
+      "Deep-L2 - LR-L2(S_all)": "embeddings + nonlinearity",
+      "Deep-L2 - iALS_tuned": "deep ranker vs CF",
+      "Deep-L2+iALS - iALS_tuned": "fusion vs CF",
+      "Deep-L2+iALS - Deep-L2(late rows)": "fusion effect",
+      "Deep-L2+iALS - LR-L2+iALS(late rows)": "nonlinear vs linear fusion",
+      "Deep-L2+iALS - hybrid": "reference (hybrid has no temporal holdout)",
+      "LR-L2(S_all) - LR-L2(dev 6M)": "training-sample effect"
+    },
+    "statistics": "per-user AUC, seed-averaged per user, paired user bootstrap 2000 seed 2026",
+    "decision_rule": "+0.01 and 95% interval excluding 0"
+  },
+  "confirmation_update": {
+    "primary_preregistered": "unchanged: LR-L2(dev 6M) - tuned iALS",
+    "new_method_question": "best new method - tuned iALS, where best new method = argmax seed-0 tune AUC among {hybrid, Deep-L2, Deep-L2+iALS, LR-L2+iALS}, fixed before unsealing",
+    "secondary": "all contrasts above repeated on the confirmation users"
+  },
+  "preregistered_expectations": "Deep-L2 probably >= LR-L2 by 0.00-0.02 and still below tuned iALS (its CF part sees 8M exposures; iALS sees 35.7M long views of all users); Deep-L2+iALS probably tuned iALS + 0.00-0.01 (the linear hybrid gave +0.005); written down so the result cannot be re-framed afterwards",
+  "resources": {
+    "feature_build_S_all": "~20 min, ~9 GB peak, run alone",
+    "iALS_early": "1 fit, ~11 min",
+    "deep_training": "per configuration estimated 5-15 min on CPU (measured on configuration 0 -> baseline for the 2x rule); 16 grid fits + 4 seed fits + 6 control fits = 26 fits, about 3-6 h serial",
+    "rule": "resources_revision_1 of protocol_confirmed.json"
+  },
+  "checks_before_running": [
+    "batch assembly equals the row-level matrix on spot-checked rows",
+    "two 1-epoch runs with the same seed are identical",
+    "every training row has time <= cutoff and every evaluation row time > cutoff (assert)",
+    "early-stopping holdout disjoint from the training rows (assert)",
+    "evaluation-time feature path reproduces training-time features on spot-checked rows"
+  ],
+  "revised_utc": "2026-10-22T06:34:29.988799+00:00",
+  "decisions_from_user": {
+    "multi_task_heads": "not this round",
+    "late_split_0415_and_min_count_5": "first-version settings accepted",
+    "S_all_8M_all_users": "continue; LR-L2(S_all) control kept",
+    "confirmation_labels": "remain sealed"
+  }
+}

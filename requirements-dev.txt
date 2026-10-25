@@ -1,0 +1,1 @@
+matplotlib==3.11.2   # figures only (scripts/make_figures.py); not needed for the pipeline

@@ -1,0 +1,58 @@
+{
+  "status": "FROZEN before running (user set the two governing rules on 2026-10-22); development week 1 selects, development week 2 tests once; confirmation users stay sealed",
+  "frozen_utc": "2026-10-23T00:40:25.361048+00:00",
+  "rules_from_user": [
+    "features, regularization strength and fusion form are all chosen on week-1 development data; week 2 is a test; nothing in this round is adjusted after seeing week-2 results",
+    "confirmation users remain sealed; the final primary confirmation is their week-2 result; week-1 results are reported separately"
+  ],
+  "part_A_exposure_diagnostic": {
+    "question": "for the same users, the same week and the same videos, does the same iALS score discriminate long views differently under recommended and under random exposure?",
+    "data": "development users (both groups), week 1 (04-22..04-28); random exposures (random pool videos by construction) vs standard exposures restricted to random-pool videos (k27_week1_standard.py); 1K cleaning rules",
+    "users": "users with >= 1 pre-cutoff long view and both outcomes in BOTH exposure sets (paired); unpaired per-set figures also reported",
+    "scores": "tuned iALS (seed 0 and 5-seed per-user average), LR-L2(dev) and the hybrid for comparison; per-user AUC per set; paired user bootstrap of the random-minus-recommended difference (2000, seed 2026); pooled AUC descriptive",
+    "reading": "isolates the exposure mechanism from users, period, model and video set; still not a proof that adaptation would fix learned fusion; purely descriptive, no selection"
+  },
+  "part_B_adaptation": {
+    "training_labels": "development users' week-1 random exposures (04-22..04-28), main population (>= 1 pre-cutoff long view, both outcomes), scope A rows",
+    "roles": {
+      "select": "fit on tune-group week-1 rows, choose form and lambda on report-group week-1 per-user AUC (scope A, main population, iALS seed 0 inputs)",
+      "refit": "the selected (form, lambda) of every form refit on all development week-1 rows (tune + report) with fixed hyperparameters -> frozen adapted models",
+      "test": "development users' week-2 random exposures (04-29..05-08), never viewed before; one run"
+    },
+    "features": "all frozen at the training cutoff (2022-04-21) for both weeks (fixed deployment): LR-L2(dev) standardized L2 matrix (dev-6M statistics), LR-L2 logit, tuned iALS score x_u.y_v and has-factors flag, video pre-cutoff log exposures and log long views",
+    "standardization": "z(LR-L2 logit) and z(iALS score, per seed) with the hybrid's tune-group week-1 reference constants (hybrid.json); M1 inputs standardized with tune-group week-1 mean/sd; constants fixed",
+    "forms": {
+      "M1_blend": "ridge logistic regression on [z_LR, z_iALS, has_factors, log1p(v_long_views), log1p(v_exposures)]; lambda in {1e-4, 1e-3, 1e-2}",
+      "M2_L2_refit": "ridge logistic regression on the 112 L2 columns, fitted from scratch on random labels; lambda in {1e-3, 1e-2, 1e-1}",
+      "M3_L2_iALS_refit": "M2 plus [z_iALS, has_factors]; lambda in {1e-3, 1e-2, 1e-1}",
+      "M4_L2_iALS_prior": "M3 features with the penalty lambda * ||beta - beta_0||^2 centred at the standard-log LR-L2(dev) coefficients (0 for the two iALS columns), intercept free: adaptation that shrinks toward the logged-exposure model; lambda in {1e-3, 1e-2, 1e-1}"
+    },
+    "optimizer": "full-batch L-BFGS in float64 (mean log loss + penalty)",
+    "selection_rules": "per form: highest report-group week-1 per-user AUC, ties within 0.0005 -> larger lambda; best adapted method = argmax over forms, ties -> simpler in the order M1 < M2 < M3 < M4; all fixed before any week-2 metric is computed",
+    "seeds": "adapted models are deterministic given the iALS input; at evaluation each of the 5 tuned-iALS seeds is fed (per-seed standardized) and per-user AUC is averaged per user (repeated-run statistic, as the hybrid); M2 has no iALS input",
+    "week2_test": {
+      "rows": "development users, Asia/Shanghai date of time_ms 04-29..05-08, 1K cleaning; main population = >= 1 pre-cutoff long view AND both outcomes in week 2; scope A primary",
+      "models": "frozen: tuned iALS (5 seeds), LR-L2(dev), Tree-L2 (3 seeds), hybrid (w = 0.9), M1-M4 final (refit on all development week-1 rows)",
+      "primary": "best adapted method - tuned iALS",
+      "key_secondary": [
+        "best adapted - hybrid",
+        "M3 - M2 (does the CF input help when learned on unbiased labels)",
+        "M4 - M3 (does shrinking toward the logged-exposure model help)",
+        "LR-L2 - tuned iALS and hybrid - tuned iALS on week 2 (transfer of the week-1 findings with staler features)"
+      ],
+      "other": [
+        "scope B",
+        "pooled AUC by video degree group (descriptive)",
+        "cold-start descriptive",
+        "week-1 report-group results of the 12 tune-trained fits, reported separately as development/selection evidence"
+      ],
+      "statistics": "per-user AUC (ties half), paired user bootstrap 2000 seed 2026, identical users per comparison",
+      "decision_rule": "+0.01 and 95% interval excluding 0",
+      "no_adjustment": "after the week-2 test nothing in this round changes; any further idea is a new round"
+    },
+    "expectations_written_down": "M1 probably >= hybrid by 0-0.01; M3/M4 uncertain (70k training rows for 114 coefficients; the prior-centred M4 is expected to be the safer of the two); week-2 absolute AUCs lower than week 1 for every model because features are 8-17 days stale"
+  },
+  "part_C_confirmation": {
+    "plan": "sealed users: week 2 primary (best adapted - tuned iALS), week 1 reported separately with the earlier task; models frozen as listed; one run per window after a development dry run; protocol v3 to be confirmed by the user before unsealing"
+  }
+}

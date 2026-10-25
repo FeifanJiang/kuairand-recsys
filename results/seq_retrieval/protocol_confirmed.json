@@ -1,0 +1,150 @@
+{
+  "status": "confirmed by the user; full training started",
+  "drafted_at_utc": "2026-10-20T03:47:24.000587+00:00",
+  "question": "do history encoding and sequence order beat the frozen time-decay iALS on full-catalog recall?",
+  "data": {
+    "train": "data/processed/train.csv.gz (standard train only)",
+    "evaluation": "data/processed/validation.csv.gz",
+    "md5": {
+      "train.csv.gz": "772f926f990c7edbecfcd3379821a32d",
+      "validation.csv.gz": "004a8975dfc29a23f1ae08f73e329a72",
+      "candidate_videos.csv": "852056259bdc5202ad99134b53f8e09b",
+      "training_users.csv": "1bd58b832910e53e6a839b748e9636fd"
+    },
+    "not_read": [
+      "test.csv.gz",
+      "random_test.csv.gz",
+      "random_validation.csv.gz"
+    ]
+  },
+  "sequences": {
+    "events": "training long-view events (long_view=1) only, sorted by (user, time_ms, video_id); file order is not used",
+    "ties": "a target at time t uses only events with time < t; state read at q = last window position with time < t; within-timestamp order = ascending video_id",
+    "repeats": "kept as separate events (345 repeated user-video events)",
+    "padding": "left padding with id 0; padding rows of both embeddings fixed at 0; attention keys masked",
+    "masks": "causal mask over positions; queries only read positions <= q, all strictly earlier than the target",
+    "windows": "look-back windows: up to C context events plus a target region of K = C/2 events; regions tile each user's sequence so each event is a target at most once; history = the most recent window events strictly earlier than the target",
+    "dropped_targets": {
+      "first_timestamp_group_of_each_user": 2444,
+      "window_boundary": 0
+    },
+    "evaluation_history": "most recent C + K - 1 events up to cutoff T (74 for C=50, 149 for C=100)",
+    "history_lengths": {
+      "C50_K25": "p1 14, p10 50, median 60, p90 71; 92.1% of targets have >= 50",
+      "C100_K50": "p1 14, p10 100, median 121, p90 143; 90.8% have >= 100"
+    }
+  },
+  "models": {
+    "shared": "untied input and output item embeddings over trainable items, final LayerNorm, dot-product scores, no item bias",
+    "pool": "prefix mean of input embeddings over positions <= q",
+    "sasrec": "learned absolute positions, 2 blocks, 1 head, dropout 0.2, block structure as in the reference (query LayerNorm, causal + padding masks, FFN width d)",
+    "attention": "fully masked query rows (left padding) receive finite logits before softmax and zero attention weights after it; loss, gradients, parameters, and scores are checked finite (check 9, benchmark)"
+  },
+  "fixed_zero_videos": {
+    "definition": "catalog videos with no training long view (1,492,680 of 2,120,292)",
+    "rule": "no rows in either the input or the output embedding table; score exactly 0 in training and evaluation; uniform negatives may be these videos with logit 0; padding rows of both tables fixed at 0",
+    "ties": "ranking ties broken by ascending catalog index (stable sort)",
+    "report": "share of top-K slots and hits from these videos"
+  },
+  "loss": {
+    "name": "sampled softmax, uniform negatives with exact logQ correction",
+    "formula": "loss = -s_pos + log(exp(s_pos) + sum_k 1[n_k != pos] exp(s_{n_k} - log(m/N)))",
+    "negatives": "m = 256 per target, drawn uniformly with replacement from all N = 2,120,292 catalog videos, independently per target; draws equal to the target contribute 0 and are not redrawn; the factor uses the original m",
+    "accidental_hits": "negatives equal to the target are masked; duplicates kept (the correction uses expected counts m/N)",
+    "history_positives": "not masked: next-item softmax treats other videos as competitors, as full softmax would",
+    "positive_correction": "none (the positive is always included)",
+    "frequency_estimates": "not needed for uniform sampling",
+    "verified": "the denominator estimate e^{s_p} + (N/m) sum_k 1[d_k != p] e^{s_{d_k}} is unbiased for the full softmax denominator (enumeration, check 1); log of it, the loss, and the gradient are not unbiased in general",
+    "later_variants": "mixed uniform + in-batch negatives with expected-count correction E_j = m_u/N + pi_j; the reference \"new\" correction with a (1 - p) multiplier; neither enters the encoder ablation",
+    "relation_to_paper": "for a fixed set of negative scores, with the paper's Q' uniform and its P estimated with the same factor N/m, our gradient equals the gradient of the paper's improved loss (check 8). Our sampler (uniform over the full catalog, hits zeroed, not redrawn) differs from the paper's (sampling from Q' over D \\ {p}), so this is not a reproduction of the paper's method"
+  },
+  "optimization": {
+    "optimizers": "SparseAdam for embeddings, Adam for other parameters, lr 1e-3, no weight decay",
+    "batch": "4096 // K windows (about 4,096 targets per step)",
+    "threads": 4,
+    "device": "cpu (MPS supports SparseAdam but CPU throughput suffices and is reproducible)"
+  },
+  "grid": {
+    "encoder": [
+      "pool",
+      "sasrec"
+    ],
+    "C": [
+      50,
+      100
+    ],
+    "K": "C/2",
+    "dim": [
+      32,
+      64
+    ],
+    "negatives": 256,
+    "configurations": 8
+  },
+  "budget": {
+    "max_epochs": 20,
+    "evaluation": "tuning-half Recall@100 with the seen filter after epochs 2, 4, ..., 20",
+    "early_stopping": "stop after 3 consecutive evaluations without improvement",
+    "checkpoint": "epoch with the best tuning-half Recall@100",
+    "estimated_time": "46-123 s per epoch (look-back windows, 4 threads) and about 37 s per evaluation; 20-47 min per configuration; about 3 hours for the grid with two jobs, about 3 hours for seed replicates, about 1.5 hours for the shuffle sensitivity"
+  },
+  "selection": {
+    "split": "validation users split 50/50 with seed 2028 (same as earlier steps)",
+    "rule": "per encoder, the configuration with the best tuning-half Recall@100 at its selected checkpoint",
+    "replicates": "selected pool and SASRec configurations rerun with seeds 1-4 (seed 42 included); each seed applies the same tuning-half early-stopping rule and selects its own checkpoint epoch; chosen epochs are reported",
+    "edge": "winners on grid edges are reported; no automatic extension"
+  },
+  "evaluation": {
+    "catalog": "full catalog of 2,120,292 videos, exact scoring",
+    "targets": "unique validation long-view pairs of known users in the catalog",
+    "users": "964 eligible users; report half for comparisons",
+    "filter": "primary: exclude the user's training long-view videos from the full catalog before top-K; secondary: unfiltered",
+    "metrics": "macro Recall@100 primary; Recall@20/50, target coverage, degree-group contributions, fixed-zero slot share",
+    "comparisons": [
+      "sasrec - pool",
+      "sasrec - ials_time",
+      "sasrec - time_popularity",
+      "pool - ials_time"
+    ],
+    "reused_results": "frozen time-decay iALS (5 seeds) and time-decayed popularity from steps 18-19: identical data, users, targets, filter, and split; the sequence models use the same 964 users and targets",
+    "statistics": "seed-averaged per-user recall, paired user bootstrap 2000 resamples seed 2026; seed SD reported",
+    "evidence_status": "the report half has been inspected repeatedly; results are development evidence, not fresh confirmation"
+  },
+  "reproducibility": {
+    "save": "model state, trainable-item map, config, seeds, copies of the scripts, data md5",
+    "checks": "reload reproduces top-100; leakage and alignment checks (implementation_checks.json)"
+  },
+  "scope_exclusions": [
+    "DIN",
+    "ranking",
+    "ANN",
+    "API",
+    "video features",
+    "model fusion",
+    "test data"
+  ],
+  "reference_paper": {
+    "citation": "Khrylchenko et al., Correcting the LogQ Correction: Revisiting Sampled Softmax for Large-Scale Retrieval, RecSys 2025, doi:10.1145/3705328.3748033, arXiv:2507.09331",
+    "read": "arXiv v2 HTML, Sections 1-5 and conclusion verbatim; appendices not verified",
+    "standard_logq": "-log e^{f(p)} / (e^{f(p)-log Q(p)} + sum_i e^{f(d_i)-log Q(d_i)}); with uniform Q every denominator term shifts equally, so it reduces to uncorrected uniform sampled softmax",
+    "improved": "-sg(1-P(p|u)) log e^{f(p)} / sum_i e^{f(d_i)-log Q'(d_i)}, positive removed from the denominator, Q' over the catalog without p, P estimated with the same negatives",
+    "repo_match": "train_*_log_new.py implements the improved loss (count/(total - count_p), (1/n) term, detached (1-p) weight)",
+    "paper_findings": [
+      "no single loss dominates across datasets and splits",
+      "uniform sampled softmax leads on Steam temporal split",
+      "improved logQ with MNS mostly beats standard logQ, slightly trails on ML-1M temporal",
+      "leave-one-out conclusions may not transfer to temporal splits"
+    ]
+  },
+  "revised_at_utc": "2026-10-20T04:40:54.478299+00:00",
+  "task": "from a user's earlier feed requests, predict videos long-viewed in later requests (not a strict next-video task)",
+  "timestamps": {
+    "finding": "raw time_ms has millisecond precision (0.11% divisible by 1000); 98.6% of raw exposures and 85.2% of long views share (user, time_ms) with another event; median group of 6 exposures, 93% within one tab: time_ms marks a feed request, not a watch time",
+    "processing": "processed rows match raw (user, video, time_ms) verbatim (99.95% of the first 2M rows checked); ties are not created by conversion",
+    "within_group_order": "no observed watch order; primary rule ascending video_id (arbitrary, fixed); file order is not used",
+    "leakage": "targets use only events with time < t; same-timestamp events never serve as history for each other",
+    "sensitivity": "membership-preserving shuffle (seed 2029): windows and evaluation histories are built with the ascending-video_id rule first; then positions are permuted only among events with the same timestamp and the same role (context or target region) inside each fixed window or history, so target sets, query positions, and every target's history set are unchanged. Run for the selected SASRec configuration over five seeds and the selected pooling configuration with seed 42.",
+    "interpretation": "the shuffle tests robustness to arbitrary arrangements inside timestamp groups; it cannot show that a model learned true watch order, which the data do not record"
+  },
+  "confirmed_utc": "2026-10-20T04:53:03.419100+00:00"
+}

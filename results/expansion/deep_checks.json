@@ -1,0 +1,17 @@
+{
+  "all_passed": true,
+  "1_ids_labels_match_rows": true,
+  "1_all_dates_on_or_before_cutoff": true,
+  "1_late_rows_match": true,
+  "2_numeric_identical": true,
+  "2_categorical_identical": true,
+  "2_ids_identical": true,
+  "3_split_disjoint_and_complete": true,
+  "3_split_fixed": true,
+  "3_holdout_positive_rate_matches": true,
+  "3_all_evaluation_rows_after_cutoff": true,
+  "4_penalty_epoch_total_rel_error": 3.8869516197726846e-08,
+  "4_penalty_normalization_ok": true,
+  "5_two_smoke_runs_bitwise_identical": true,
+  "5_smoke_epoch_seconds_200k_rows": 0.5685687065124512
+}

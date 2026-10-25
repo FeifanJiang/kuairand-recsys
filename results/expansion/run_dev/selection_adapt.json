@@ -1,0 +1,188 @@
+{
+  "selection": {
+    "M1_blend": {
+      "l2": 0.0001,
+      "report_week1_auc": 0.65113318833591
+    },
+    "M2_L2_refit": {
+      "l2": 0.001,
+      "report_week1_auc": 0.6709115632234245
+    },
+    "M3_L2_iALS_refit": {
+      "l2": 0.001,
+      "report_week1_auc": 0.674401982102859
+    },
+    "M4_L2_iALS_prior": {
+      "l2": 0.001,
+      "report_week1_auc": 0.6748562053303963
+    }
+  },
+  "best_adapted_method": "M3_L2_iALS_refit",
+  "tie_rule": "per form larger lambda within 0.0005; across forms simpler (M1 < M2 < M3 < M4) within 0.0005",
+  "grid_results_week1_report_group": [
+    {
+      "form": "M1_blend",
+      "l2": 0.0001,
+      "objective": 0.3178288744912615,
+      "grad_norm": 9.333026862719605e-09,
+      "train_rows": 49337,
+      "report_week1_auc": 0.65113318833591
+    },
+    {
+      "form": "M1_blend",
+      "l2": 0.001,
+      "objective": 0.3187273577019769,
+      "grad_norm": 8.440006258675187e-09,
+      "train_rows": 49337,
+      "report_week1_auc": 0.6462728848610901
+    },
+    {
+      "form": "M1_blend",
+      "l2": 0.01,
+      "objective": 0.3232268899399051,
+      "grad_norm": 7.75978019749182e-09,
+      "train_rows": 49337,
+      "report_week1_auc": 0.6393843319773596
+    },
+    {
+      "form": "M2_L2_refit",
+      "l2": 0.001,
+      "objective": 0.31381770491706834,
+      "grad_norm": 5.053075321690439e-08,
+      "train_rows": 49337,
+      "report_week1_auc": 0.6709115632234245
+    },
+    {
+      "form": "M2_L2_refit",
+      "l2": 0.01,
+      "objective": 0.3175331062318728,
+      "grad_norm": 1.3205375771876983e-08,
+      "train_rows": 49337,
+      "report_week1_auc": 0.665887756911656
+    },
+    {
+      "form": "M2_L2_refit",
+      "l2": 0.1,
+      "objective": 0.329692310302889,
+      "grad_norm": 1.7384915153703673e-08,
+      "train_rows": 49337,
+      "report_week1_auc": 0.6572248617058476
+    },
+    {
+      "form": "M3_L2_iALS_refit",
+      "l2": 0.001,
+      "objective": 0.313207806175398,
+      "grad_norm": 2.4406857230677133e-08,
+      "train_rows": 49337,
+      "report_week1_auc": 0.674401982102859
+    },
+    {
+      "form": "M3_L2_iALS_refit",
+      "l2": 0.01,
+      "objective": 0.3168022069989878,
+      "grad_norm": 1.308174482092307e-08,
+      "train_rows": 49337,
+      "report_week1_auc": 0.6674094707554526
+    },
+    {
+      "form": "M3_L2_iALS_refit",
+      "l2": 0.1,
+      "objective": 0.32875941966878647,
+      "grad_norm": 1.5207848018437714e-08,
+      "train_rows": 49337,
+      "report_week1_auc": 0.6601840228345085
+    },
+    {
+      "form": "M4_L2_iALS_prior",
+      "l2": 0.001,
+      "objective": 0.3128097103612954,
+      "grad_norm": 1.979617073256188e-08,
+      "train_rows": 49337,
+      "report_week1_auc": 0.6748562053303963
+    },
+    {
+      "form": "M4_L2_iALS_prior",
+      "l2": 0.01,
+      "objective": 0.3148740251433559,
+      "grad_norm": 1.3271699211072148e-08,
+      "train_rows": 49337,
+      "report_week1_auc": 0.6704277544468081
+    },
+    {
+      "form": "M4_L2_iALS_prior",
+      "l2": 0.1,
+      "objective": 0.3196125589319162,
+      "grad_norm": 2.343671172764211e-08,
+      "train_rows": 49337,
+      "report_week1_auc": 0.6487531652979576
+    }
+  ],
+  "week1_report_group_baselines_seed_avg": {
+    "LR-L2": 0.6214959147355112,
+    "iALS_tuned": 0.6545196749516787,
+    "hybrid": 0.6598814840471301,
+    "note": "adapted-model week-1 figures above use iALS seed 0 and were trained on the tune group; selection evidence, reported separately"
+  },
+  "rows": {
+    "tune_train": 49337,
+    "report_select": 48684,
+    "all_dev_refit": 98021
+  },
+  "m1_inputs": [
+    "z_LR",
+    "z_iALS",
+    "has_factors",
+    "log1p_v_long_views",
+    "log1p_v_exposures"
+  ],
+  "m1_stats": [
+    [
+      0.178489287097928,
+      0.034628514954039145,
+      0.889454162190648,
+      2.443107785809737,
+      3.871671546385708
+    ],
+    [
+      0.9841870603430894,
+      1.0936397438144465,
+      0.31357207868079295,
+      1.6428178683377168,
+      1.452533370022237
+    ]
+  ],
+  "final_models": {
+    "M1_blend": {
+      "l2": 0.0001,
+      "objective": 0.3168167088914623,
+      "grad_norm": 8.595190648573068e-09,
+      "train_rows": 98021
+    },
+    "M2_L2_refit": {
+      "l2": 0.001,
+      "objective": 0.31353905090991185,
+      "grad_norm": 1.5204592777957336e-08,
+      "train_rows": 98021
+    },
+    "M3_L2_iALS_refit": {
+      "l2": 0.001,
+      "objective": 0.3127054458361076,
+      "grad_norm": 7.6593996914403e-08,
+      "train_rows": 98021
+    },
+    "M4_L2_iALS_prior": {
+      "l2": 0.001,
+      "objective": 0.3123043245642879,
+      "grad_norm": 1.877585171829733e-08,
+      "train_rows": 98021
+    }
+  },
+  "coefficients_M1_final": {
+    "z_LR": 0.7821141832869403,
+    "z_iALS": 0.12254474885206909,
+    "has_factors": -0.02567824608567059,
+    "log1p_v_long_views": -0.47598085560640535,
+    "log1p_v_exposures": 0.5517203386519192
+  },
+  "fitted_utc": "2026-10-23T00:44:29.377892+00:00"
+}

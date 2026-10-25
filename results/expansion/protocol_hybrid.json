@@ -1,0 +1,31 @@
+{
+  "status": "CONFIRMED by the user on 2026-10-22 without changes",
+  "drafted_utc": "2026-10-22T05:49:33.700812+00:00",
+  "question": "are the LR-L2 features and tuned iALS complementary: does a one-parameter blend beat tuned iALS on per-user AUC for development users with pre-cutoff history?",
+  "model": "score_w = (1-w) z(LR-L2 logit) + w z(iALS score); z = (score - mean)/sd with mean, sd from each model's scores on the tune-group selection rows (main population, scope A; scores only); each iALS seed standardized separately; iALS score 0 for videos without a pre-cutoff long view kept as is (no separate offset)",
+  "components": "LR-L2 l2=1e-4 and tuned iALS tau 2 / alpha 30 / l2 1000, both frozen from protocol_confirmed.json; scores already computed, nothing retrained",
+  "grid_w": [
+    0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1.0
+  ],
+  "selection": "tune-group main-population scope-A mean per-user AUC with iALS seed 0; ties within 0.0005 -> larger w (closer to the stronger single model); w=0 and w=1 are the two single models and serve as anchors",
+  "evaluation": "report group once, only at the selected w: hybrid (5 iALS seeds; per-user AUC per seed, averaged per user) vs tuned iALS (5 seeds) and vs LR-L2; scope A primary; scope B and pooled AUC by video degree group secondary/descriptive; paired user bootstrap 2000, seed 2026",
+  "evidence_role": "development feedback - the report group was already viewed for the main comparison; the clean answer comes from the sealed confirmation users, whose task is fixed before unsealing",
+  "decision_rule": "+0.01 per-user AUC and 95% interval excluding 0",
+  "not_included": [
+    "stacking trained on training rows (iALS scores on training rows are in-sample; would need a temporal holdout)",
+    "blends with Tree-L2 or LR-L1",
+    "a second parameter for the degree-0 offset",
+    "re-tuning either component"
+  ],
+  "confirmed_utc": "2026-10-22T05:51:39.362321+00:00"
+}

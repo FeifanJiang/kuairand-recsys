@@ -1,0 +1,12 @@
+{
+  "stage": "ials_tau2_alpha30_l230_s0",
+  "seconds": 705.867035150528,
+  "result": {
+    "name": "iALS_tau2_alpha30_l230_s0",
+    "tau": 2.0,
+    "alpha": 30.0,
+    "l2": 30.0,
+    "seed": 0,
+    "tune_auc": 0.6027036151388053
+  }
+}

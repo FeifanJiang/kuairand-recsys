@@ -1,0 +1,80 @@
+{"job": "eval", "exit": 0, "wall_seconds": 12.053377628326416, "expected_seconds": 600, "peak_bytes": 5896846592, "swapout_bytes": 0}
+{"job": "lr_L1", "exit": 0, "wall_seconds": 111.22287082672119, "expected_seconds": 900, "peak_bytes": 5805441600, "swapout_bytes": 43319296}
+{"job": "lr_L2", "exit": 0, "wall_seconds": 118.37156510353088, "expected_seconds": 900, "peak_bytes": 6179210944, "swapout_bytes": 663683072}
+{"job": "tree_L1_c0_s0", "exit": 0, "wall_seconds": 176.4642789363861, "expected_seconds": 1200, "peak_bytes": 4141430592, "swapout_bytes": 0}
+{"job": "tree_L1_c1_s0", "exit": 0, "wall_seconds": 191.63930821418762, "expected_seconds": 1200, "peak_bytes": 4090280064, "swapout_bytes": 0}
+{"job": "tree_L1_c2_s0", "exit": 0, "wall_seconds": 196.3721718788147, "expected_seconds": 1200, "peak_bytes": 4104959616, "swapout_bytes": 0}
+{"job": "tree_L1_c3_s0", "exit": 0, "wall_seconds": 161.2709460258484, "expected_seconds": 1200, "peak_bytes": 4095981184, "swapout_bytes": 0}
+{"job": "tree_L1_c4_s0", "exit": 0, "wall_seconds": 140.45521903038025, "expected_seconds": 1200, "peak_bytes": 4208424896, "swapout_bytes": 0}
+{"job": "tree_L1_c5_s0", "exit": 0, "wall_seconds": 125.29715824127197, "expected_seconds": 1200, "peak_bytes": 4150818944, "swapout_bytes": 0}
+{"job": "tree_L1_c6_s0", "exit": 0, "wall_seconds": 142.17127108573914, "expected_seconds": 1200, "peak_bytes": 4221646528, "swapout_bytes": 0}
+{"job": "tree_L1_c7_s0", "exit": 0, "wall_seconds": 142.2134828567505, "expected_seconds": 1200, "peak_bytes": 4151965696, "swapout_bytes": 0}
+{"job": "tree_L2_c0_s0", "exit": 0, "wall_seconds": 493.72953176498413, "expected_seconds": 1200, "peak_bytes": 5603459584, "swapout_bytes": 119472128}
+{"job": "tree_L2_c1_s0", "exit": 0, "wall_seconds": 402.1020760536194, "expected_seconds": 1200, "peak_bytes": 5655429760, "swapout_bytes": 290390016}
+{"job": "tree_L2_c2_s0", "exit": 0, "wall_seconds": 499.0272390842438, "expected_seconds": 1200, "peak_bytes": 5676598144, "swapout_bytes": 1232666624}
+{"job": "tree_L2_c3_s0", "exit": 0, "wall_seconds": 408.15576696395874, "expected_seconds": 1200, "peak_bytes": 4419220352, "swapout_bytes": 0}
+{"job": "tree_L2_c4_s0", "exit": 0, "wall_seconds": 186.00965785980225, "expected_seconds": 1200, "peak_bytes": 4449514368, "swapout_bytes": 0}
+{"job": "tree_L2_c5_s0", "exit": 0, "wall_seconds": 216.04019808769226, "expected_seconds": 1200, "peak_bytes": 4450366528, "swapout_bytes": 0}
+{"job": "tree_L2_c6_s0", "exit": 0, "wall_seconds": 227.67212796211243, "expected_seconds": 1200, "peak_bytes": 4438488192, "swapout_bytes": 0}
+{"job": "tree_L2_c7_s0", "exit": 0, "wall_seconds": 323.71438097953796, "expected_seconds": 1200, "peak_bytes": 4444107840, "swapout_bytes": 0}
+{"job": "ials_tau0.5_alpha10_l230_s0", "exit": 0, "wall_seconds": 643.0124559402466, "expected_seconds": 900, "peak_bytes": 877597184, "swapout_bytes": 0}
+{"job": "ials_tau0.5_alpha10_l2100_s0", "exit": 0, "wall_seconds": 634.8011891841888, "expected_seconds": 900, "peak_bytes": 877465920, "swapout_bytes": 0}
+{"job": "ials_tau0.5_alpha10_l2300_s0", "exit": 0, "wall_seconds": 643.9364638328552, "expected_seconds": 900, "peak_bytes": 876335424, "swapout_bytes": 2162688}
+{"job": "ials_tau0.5_alpha30_l230_s0", "exit": 0, "wall_seconds": 659.6772992610931, "expected_seconds": 900, "peak_bytes": 875909504, "swapout_bytes": 240910336}
+{"job": "ials_tau0.5_alpha30_l2100_s0", "exit": 0, "wall_seconds": 816.4029388427734, "expected_seconds": 900, "peak_bytes": 877744576, "swapout_bytes": 1398620160}
+{"job": "ials_tau0.5_alpha30_l2300_s0", "exit": 0, "wall_seconds": 739.7755289077759, "expected_seconds": 900, "peak_bytes": 877056448, "swapout_bytes": 0}
+{"job": "ials_tau0.5_alpha100_l230_s0", "exit": 0, "wall_seconds": 818.1878750324249, "expected_seconds": 900, "peak_bytes": 877236672, "swapout_bytes": 357826560}
+{"job": "ials_tau0.5_alpha100_l2100_s0", "exit": 0, "wall_seconds": 736.7470750808716, "expected_seconds": 900, "peak_bytes": 876646912, "swapout_bytes": 620494848}
+{"job": "ials_tau0.5_alpha100_l2300_s0", "exit": 0, "wall_seconds": 863.1416692733765, "expected_seconds": 900, "peak_bytes": 877597184, "swapout_bytes": 2881683456}
+{"job": "ials_tau2_alpha10_l230_s0", "exit": 0, "wall_seconds": 625.1513180732727, "baseline_seconds": 640, "peak_bytes": 1860131200, "swapout_bytes": 487653376, "pressure_samples": {"2": 62}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha10_l2100_s0", "exit": 0, "wall_seconds": 658.5963668823242, "baseline_seconds": 640, "peak_bytes": 1862342784, "swapout_bytes": 542572544, "pressure_samples": {"2": 65}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha10_l2300_s0", "exit": 0, "wall_seconds": 723.5801358222961, "baseline_seconds": 640, "peak_bytes": 1859377344, "swapout_bytes": 161153024, "pressure_samples": {"2": 72}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha30_l230_s0", "exit": 0, "wall_seconds": 707.4534962177277, "baseline_seconds": 640, "peak_bytes": 1860770112, "swapout_bytes": 0, "pressure_samples": {"2": 70}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha30_l2100_s0", "exit": 0, "wall_seconds": 741.6469528675079, "baseline_seconds": 640, "peak_bytes": 1858902528, "swapout_bytes": 0, "pressure_samples": {"1": 1, "2": 73}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha30_l2300_s0", "exit": 0, "wall_seconds": 820.0152027606964, "baseline_seconds": 640, "peak_bytes": 1861032128, "swapout_bytes": 393150464, "pressure_samples": {"2": 81}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha100_l230_s0", "exit": 0, "wall_seconds": 722.3115990161896, "baseline_seconds": 640, "peak_bytes": 1860819392, "swapout_bytes": 0, "pressure_samples": {"1": 1, "2": 71}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha100_l2100_s0", "exit": 0, "wall_seconds": 710.0764789581299, "baseline_seconds": 640, "peak_bytes": 1859786880, "swapout_bytes": 14155776, "pressure_samples": {"2": 70}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha100_l2300_s0", "exit": 0, "wall_seconds": 703.7200739383698, "baseline_seconds": 640, "peak_bytes": 1860704576, "swapout_bytes": 0, "pressure_samples": {"2": 70}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha3_l230_s0", "exit": 0, "wall_seconds": 714.3352630138397, "baseline_seconds": 640, "peak_bytes": 1860262400, "swapout_bytes": 122748928, "pressure_samples": {"2": 71}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha3_l2100_s0", "exit": 0, "wall_seconds": 823.1606628894806, "baseline_seconds": 640, "peak_bytes": 1858935040, "swapout_bytes": 394395648, "pressure_samples": {"2": 82}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha3_l2300_s0", "exit": 0, "wall_seconds": 678.8941359519958, "baseline_seconds": 640, "peak_bytes": 1862195328, "swapout_bytes": 0, "pressure_samples": {"1": 67}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha10_l21000_s0", "exit": 0, "wall_seconds": 790.2753410339355, "baseline_seconds": 640, "peak_bytes": 1861343552, "swapout_bytes": 0, "pressure_samples": {"1": 13, "2": 65}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha30_l21000_s0", "exit": 0, "wall_seconds": 726.0028858184814, "baseline_seconds": 640, "peak_bytes": 1861196224, "swapout_bytes": 0, "pressure_samples": {"1": 72}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha100_l21000_s0", "exit": 0, "wall_seconds": 768.3405120372772, "baseline_seconds": 640, "peak_bytes": 1857149120, "swapout_bytes": 0, "pressure_samples": {"2": 76}, "terminated_for_pressure": false}
+{"job": "tree_L1_c7_s1", "exit": 0, "wall_seconds": 115.41624617576599, "baseline_seconds": 142.2134828567505, "peak_bytes": 3227904576, "swapout_bytes": 0, "pressure_samples": {"1": 11}, "terminated_for_pressure": false}
+{"job": "tree_L1_c7_s2", "exit": 0, "wall_seconds": 129.4454209804535, "baseline_seconds": 142.2134828567505, "peak_bytes": 3233442048, "swapout_bytes": 0, "pressure_samples": {"1": 12}, "terminated_for_pressure": false}
+{"job": "tree_L2_c3_s1", "exit": 0, "wall_seconds": 575.6044058799744, "baseline_seconds": 408.15576696395874, "peak_bytes": 4480529472, "swapout_bytes": 22151168, "pressure_samples": {"1": 1, "2": 56}, "terminated_for_pressure": false}
+{"job": "tree_L2_c3_s2", "exit": 0, "wall_seconds": 494.94097805023193, "baseline_seconds": 408.15576696395874, "peak_bytes": 4542821504, "swapout_bytes": 0, "pressure_samples": {"1": 1, "2": 48}, "terminated_for_pressure": false}
+{"job": "ials_tau0.5_alpha30_l2100_s1", "exit": 0, "wall_seconds": 703.7350831031799, "baseline_seconds": 640, "peak_bytes": 1862572224, "swapout_bytes": 0, "pressure_samples": {"1": 3, "2": 67}, "terminated_for_pressure": false}
+{"job": "ials_tau0.5_alpha30_l2100_s2", "exit": 0, "wall_seconds": 672.9468829631805, "baseline_seconds": 640, "peak_bytes": 1860671808, "swapout_bytes": 0, "pressure_samples": {"1": 1, "2": 66}, "terminated_for_pressure": false}
+{"job": "ials_tau0.5_alpha30_l2100_s3", "exit": 0, "wall_seconds": 678.2813200950623, "baseline_seconds": 640, "peak_bytes": 1861687680, "swapout_bytes": 0, "pressure_samples": {"2": 67}, "terminated_for_pressure": false}
+{"job": "ials_tau0.5_alpha30_l2100_s4", "exit": 0, "wall_seconds": 745.7614901065826, "baseline_seconds": 640, "peak_bytes": 1858328832, "swapout_bytes": 447217664, "pressure_samples": {"2": 74}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha30_l21000_s1", "exit": 0, "wall_seconds": 734.1417763233185, "baseline_seconds": 640, "peak_bytes": 1859279104, "swapout_bytes": 0, "pressure_samples": {"1": 1, "2": 72}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha30_l21000_s2", "exit": 0, "wall_seconds": 723.8155446052551, "baseline_seconds": 640, "peak_bytes": 1860802880, "swapout_bytes": 0, "pressure_samples": {"2": 72}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha30_l21000_s3", "exit": 0, "wall_seconds": 808.6677477359772, "baseline_seconds": 640, "peak_bytes": 1860950144, "swapout_bytes": 340262912, "pressure_samples": {"2": 80}, "terminated_for_pressure": false}
+{"job": "ials_tau2_alpha30_l21000_s4", "exit": 0, "wall_seconds": 708.4040777683258, "baseline_seconds": 640, "peak_bytes": 1859852672, "swapout_bytes": 344850432, "pressure_samples": {"1": 5, "2": 65}, "terminated_for_pressure": false}
+{"job": "lr_L2all", "exit": 0, "wall_seconds": 148.89192390441895, "baseline_seconds": 1200, "peak_bytes": 7756682304, "swapout_bytes": 2747531264, "pressure_samples": {"1": 3, "2": 11}, "terminated_for_pressure": false}
+{"job": "lr_fusion", "exit": 0, "wall_seconds": 77.33007287979126, "baseline_seconds": 1200, "peak_bytes": 4467899200, "swapout_bytes": 0, "pressure_samples": {"1": 7}, "terminated_for_pressure": false}
+{"job": "deep_c0_s0", "exit": 0, "wall_seconds": 94.98567914962769, "baseline_seconds": 347, "peak_bytes": 5581782400, "swapout_bytes": 0, "pressure_samples": {"1": 9}, "terminated_for_pressure": false}
+{"job": "deep_c1_s0", "exit": 0, "wall_seconds": 125.06770205497742, "baseline_seconds": 347, "peak_bytes": 5583027520, "swapout_bytes": 0, "pressure_samples": {"1": 12}, "terminated_for_pressure": false}
+{"job": "deep_c2_s0", "exit": 0, "wall_seconds": 130.81584787368774, "baseline_seconds": 347, "peak_bytes": 5584387456, "swapout_bytes": 260718592, "pressure_samples": {"1": 13}, "terminated_for_pressure": false}
+{"job": "deep_c3_s0", "exit": 0, "wall_seconds": 156.00123071670532, "baseline_seconds": 347, "peak_bytes": 5583601152, "swapout_bytes": 0, "pressure_samples": {"1": 15}, "terminated_for_pressure": false}
+{"job": "deep_c4_s0", "exit": 0, "wall_seconds": 98.86565685272217, "baseline_seconds": 347, "peak_bytes": 5582486720, "swapout_bytes": 391774208, "pressure_samples": {"1": 9}, "terminated_for_pressure": false}
+{"job": "deep_c5_s0", "exit": 0, "wall_seconds": 130.55683207511902, "baseline_seconds": 347, "peak_bytes": 5582650688, "swapout_bytes": 230162432, "pressure_samples": {"1": 13}, "terminated_for_pressure": false}
+{"job": "deep_c6_s0", "exit": 0, "wall_seconds": 114.69471192359924, "baseline_seconds": 347, "peak_bytes": 5581766016, "swapout_bytes": 35258368, "pressure_samples": {"1": 11}, "terminated_for_pressure": false}
+{"job": "deep_c7_s0", "exit": 0, "wall_seconds": 183.84262895584106, "baseline_seconds": 347, "peak_bytes": 5582601600, "swapout_bytes": 469368832, "pressure_samples": {"1": 18}, "terminated_for_pressure": false}
+{"job": "deep_ials_c0_s0", "exit": 0, "wall_seconds": 55.63397526741028, "baseline_seconds": 233, "peak_bytes": 2890441920, "swapout_bytes": 0, "pressure_samples": {"1": 5}, "terminated_for_pressure": false}
+{"job": "deep_ials_c1_s0", "exit": 0, "wall_seconds": 75.2421350479126, "baseline_seconds": 233, "peak_bytes": 2861262080, "swapout_bytes": 0, "pressure_samples": {"1": 7}, "terminated_for_pressure": false}
+{"job": "deep_ials_c2_s0", "exit": 0, "wall_seconds": 70.82698273658752, "baseline_seconds": 233, "peak_bytes": 2893636672, "swapout_bytes": 0, "pressure_samples": {"1": 7}, "terminated_for_pressure": false}
+{"job": "deep_ials_c3_s0", "exit": 0, "wall_seconds": 98.32297086715698, "baseline_seconds": 233, "peak_bytes": 2861884736, "swapout_bytes": 0, "pressure_samples": {"1": 9}, "terminated_for_pressure": false}
+{"job": "deep_ials_c4_s0", "exit": 0, "wall_seconds": 56.20330095291138, "baseline_seconds": 233, "peak_bytes": 2892964864, "swapout_bytes": 0, "pressure_samples": {"1": 5}, "terminated_for_pressure": false}
+{"job": "deep_ials_c5_s0", "exit": 0, "wall_seconds": 58.87078499794006, "baseline_seconds": 233, "peak_bytes": 2893210816, "swapout_bytes": 0, "pressure_samples": {"1": 5}, "terminated_for_pressure": false}
+{"job": "deep_ials_c6_s0", "exit": 0, "wall_seconds": 64.3524112701416, "baseline_seconds": 233, "peak_bytes": 2893047104, "swapout_bytes": 0, "pressure_samples": {"1": 4, "2": 2}, "terminated_for_pressure": false}
+{"job": "deep_ials_c7_s0", "exit": 0, "wall_seconds": 79.46903777122498, "baseline_seconds": 233, "peak_bytes": 2865095808, "swapout_bytes": 0, "pressure_samples": {"1": 7}, "terminated_for_pressure": false}
+{"job": "deep_c3_s1", "exit": 0, "wall_seconds": 154.4197118282318, "baseline_seconds": 156.00123071670532, "peak_bytes": 5582110016, "swapout_bytes": 964034560, "pressure_samples": {"1": 9, "2": 6}, "terminated_for_pressure": false}
+{"job": "deep_c3_s2", "exit": 0, "wall_seconds": 149.86402797698975, "baseline_seconds": 156.00123071670532, "peak_bytes": 5582355840, "swapout_bytes": 215678976, "pressure_samples": {"1": 14}, "terminated_for_pressure": false}
+{"job": "deep_ials_c0_s1", "exit": 0, "wall_seconds": 51.181928873062134, "baseline_seconds": 55.63397526741028, "peak_bytes": 2891146304, "swapout_bytes": 0, "pressure_samples": {"1": 5}, "terminated_for_pressure": false}
+{"job": "deep_ials_c0_s2", "exit": 0, "wall_seconds": 51.52891993522644, "baseline_seconds": 55.63397526741028, "peak_bytes": 2888115328, "swapout_bytes": 0, "pressure_samples": {"1": 5}, "terminated_for_pressure": false}
+{"job": "deep_late_c0_s0", "exit": 0, "wall_seconds": 52.446779012680054, "baseline_seconds": 56, "peak_bytes": 2857559104, "swapout_bytes": 0, "pressure_samples": {"1": 5}, "terminated_for_pressure": false}
+{"job": "deep_late_c0_s1", "exit": 0, "wall_seconds": 49.161351919174194, "baseline_seconds": 52.446779012680054, "peak_bytes": 2859754368, "swapout_bytes": 0, "pressure_samples": {"1": 4}, "terminated_for_pressure": false}
+{"job": "deep_late_c0_s2", "exit": 0, "wall_seconds": 48.56219005584717, "baseline_seconds": 52.446779012680054, "peak_bytes": 2862310272, "swapout_bytes": 0, "pressure_samples": {"1": 4}, "terminated_for_pressure": false}

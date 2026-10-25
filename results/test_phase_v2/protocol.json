@@ -1,0 +1,133 @@
+{
+  "version": 2,
+  "frozen_at_utc": "2026-10-20T01:04:37.254663+00:00",
+  "supersedes": "protocol.draft1.json (not run)",
+  "frozen_before_evaluating_these_models_on_test": true,
+  "development_data": "every configuration below was chosen on train/validation only",
+  "data": {
+    "training_period": "standard train + validation logs, 2022-04-07 to 2022-04-28 (data/processed/test_phase/train.csv.gz)",
+    "catalog": "videos in the standard train + validation logs (data/processed/test_phase/candidate_videos.csv)",
+    "known_users": "users in the standard train + validation logs (data/processed/test_phase/training_users.csv)",
+    "edges": "B_uv = 1 if the user had any long_view=1 event with the video in train + validation; repeats collapsed",
+    "cutoff_T": "maximum time_ms in train + validation; used by every time-weighted formula"
+  },
+  "models": {
+    "popularity": {
+      "score": "number of long_view=1 events per video in train + validation",
+      "ties": "ascending video_id"
+    },
+    "freshness": {
+      "score": "upload_dt from video_features_basic_1k.csv, newest first; missing dates last",
+      "ties": "more train + validation long-view events first, then ascending video_id"
+    },
+    "time_popularity": {
+      "score": "sum over the video's train + validation long views of exp(-(T - t)/tau), tau = 0.5 days (t, T in days)",
+      "ties": "ascending video_id"
+    },
+    "bpr": {
+      "script": "train_mf.train_bpr",
+      "score": "b_v + p_u^T q_v",
+      "dim": 16,
+      "l2": 10,
+      "penalty": "gaussian (touches divided by expected touches deg + m E / N)",
+      "negatives": 4,
+      "negative_sampling": "uniform over catalog per edge, rejecting training edges",
+      "epochs": 10,
+      "batch_size": 2048,
+      "item_learning_rate": 0.02,
+      "user_learning_rate": 0.01,
+      "optimizers": "SparseAdam (items), Adam (users)",
+      "checkpoint": "final epoch",
+      "seeding": "torch.manual_seed(seed) and numpy default_rng(seed) before training",
+      "seeds": [
+        42,
+        1,
+        2,
+        3,
+        4
+      ],
+      "threads": 4
+    },
+    "ials_binary": {
+      "script": "ials_confidence.ials",
+      "dim": 32,
+      "alpha": 30,
+      "l2": 300,
+      "iterations": 15,
+      "confidence_on_edges": "1 + alpha",
+      "non_edges": "preference 0, confidence 1",
+      "solver": "alternating exact solves via Gram-matrix identity, users then items each iteration",
+      "init": "torch.manual_seed(seed); X ~ 0.01 N(0,1); Y ~ 0.01 N(0,1) for videos with edges, 0 otherwise",
+      "seeds": [
+        42,
+        1,
+        2,
+        3,
+        4
+      ],
+      "threads": 4
+    },
+    "ials_time": {
+      "script": "ials_confidence.ials",
+      "dim": 32,
+      "tau_days": 0.5,
+      "alpha": 30,
+      "l2": 100,
+      "iterations": 15,
+      "confidence_on_edges": "1 + alpha * log(1 + sum over the pair's long views of exp(-(T - t)/tau))",
+      "non_edges": "preference 0, confidence 1",
+      "solver": "as ials_binary",
+      "init": "as ials_binary",
+      "seeds": [
+        42,
+        1,
+        2,
+        3,
+        4
+      ],
+      "threads": 4
+    }
+  },
+  "hyperparameters": "transferred unchanged from validation; not retuned for the longer training period",
+  "retrieval": "exact full-catalog scoring in blocks of 8192 with a running top-K merge (retrieval_eval.exact_top100); continuous-score ties follow torch.topk order and are not otherwise broken",
+  "evaluation": {
+    "split": "standard test, 2022-04-29 to 2022-05-08",
+    "targets": "unique (user, video) pairs with long_view=1 in test, for known users and catalog videos",
+    "cohort": "known users with at least one in-catalog test target",
+    "metrics": "macro Recall@20/50/100",
+    "settings": {
+      "unfiltered": "all catalog videos are eligible, including ones the user already long-viewed",
+      "filtered": "exclude every video the user long-viewed in train + validation (long views only, not all exposures); history is frozen at T and not updated during test; exclusion is applied to the full catalog before taking the top K; target denominators are identical to the unfiltered setting; report the number and share of targets made unreachable"
+    },
+    "coverage": "share of all test long-view pairs that belong to known users and catalog videos"
+  },
+  "comparisons": {
+    "primary": "filtered setting, Recall@100: ials_time vs time_popularity",
+    "key_secondary": "filtered setting, Recall@100: ials_time vs ials_binary",
+    "other_secondary": [
+      "the same two comparisons in the unfiltered setting",
+      "all models at K = 20/50/100 in both settings",
+      "bpr vs ials_binary and popularity"
+    ]
+  },
+  "statistics": {
+    "aggregation": "per-user recall averaged over the five seeds for seeded models",
+    "interval": "paired user bootstrap of the mean per-user difference, 2000 resamples, numpy default_rng(2026)",
+    "interpretation": "intervals reflect user sampling uncertainty; training-seed variability is reported separately as the SD of the five seed-level means"
+  },
+  "random_test_supplement": {
+    "sample": "random_test exposures of known users and catalog videos; no seen filter",
+    "metric": "per-user AUC (rank-based, ties averaged) over users with both long_view=1 and long_view=0 exposures; seeded models average per-user AUC over seeds",
+    "models": [
+      "ials_time",
+      "ials_binary",
+      "time_popularity",
+      "popularity",
+      "bpr"
+    ],
+    "comparisons": "ials_time vs each other model, paired user bootstrap (2000, seed 2026)",
+    "report": "eligible exposures, long-view rate, users with both outcomes, differences and intervals",
+    "role": "supplementary; not used to select or change models"
+  },
+  "commitment": "one frozen test evaluation; the plan is not adjusted based on results. An implementation error is documented, fixed, and the evaluation rerun; erroneous results are archived, not kept as final."
+}

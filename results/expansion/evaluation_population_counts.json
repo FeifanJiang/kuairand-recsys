@@ -1,0 +1,57 @@
+{
+  "date_rule": "Asia/Shanghai date of time_ms in 2022-04-22..04-28 (as prepare_data.py)",
+  "dev_rows_date_column_differs": 4202,
+  "dev_exact_duplicate_rows_in_selected_columns": 7,
+  "tune": {
+    "users_with_random": 4613,
+    "main_users": 1612,
+    "main_rows": 49701,
+    "cold_start_with_random": 28,
+    "cold_start_both_outcomes": 13,
+    "cold_start_by_type": {
+      "no_exposure": {
+        "with_random": 23,
+        "both": 9
+      },
+      "exposure_no_long_view": {
+        "with_random": 5,
+        "both": 4
+      }
+    }
+  },
+  "report": {
+    "users_with_random": 4609,
+    "main_users": 1671,
+    "main_rows": 48960,
+    "cold_start_with_random": 25,
+    "cold_start_both_outcomes": 7,
+    "cold_start_by_type": {
+      "no_exposure": {
+        "with_random": 24,
+        "both": 6
+      },
+      "exposure_no_long_view": {
+        "with_random": 1,
+        "both": 1
+      }
+    }
+  },
+  "all": {
+    "users_with_random": 9222,
+    "main_users": 3283,
+    "main_rows": 98661,
+    "cold_start_with_random": 53,
+    "cold_start_both_outcomes": 20,
+    "cold_start_by_type": {
+      "no_exposure": {
+        "with_random": 47,
+        "both": 15
+      },
+      "exposure_no_long_view": {
+        "with_random": 6,
+        "both": 5
+      }
+    }
+  },
+  "definition": "development users; main = >=1 pre-cutoff standard long view AND both outcomes in the window"
+}

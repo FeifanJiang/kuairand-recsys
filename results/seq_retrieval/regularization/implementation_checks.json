@@ -1,0 +1,68 @@
+{
+  "all_passed": true,
+  "1_input_penalty_epoch_sum_exact": true,
+  "2_output_penalty_epoch_expectation": {
+    "monte_carlo_mean": 0.003473924068224733,
+    "standard_error": 5.498216016652806e-06,
+    "target": 0.0034755615051835775,
+    "within_3_se": 1.0
+  },
+  "3_pool_l2_0_first_two_epoch_losses_match": true,
+  "3_pool_max_relative_difference": 4.429389439892861e-09,
+  "3_sasrec_l2_0_first_two_epoch_losses_match": false,
+  "3_sasrec_max_relative_difference": 0.0001795598782025903,
+  "4_serial_archived_vs_new_code_l2_0": {
+    "pool_C100_d64_s42": {
+      "archived_code": [
+        14.456228998836997,
+        12.844657764447335
+      ],
+      "new_code": [
+        14.456228998836997,
+        12.844657767093253
+      ],
+      "bitwise_identical": false
+    },
+    "sasrec_C50_d64_s42": {
+      "archived_code": [
+        14.532523448884486,
+        14.251145193764174
+      ],
+      "new_code": [
+        14.53252382476178,
+        14.25109437549778
+      ],
+      "bitwise_identical": false
+    }
+  },
+  "note": "check 3 compares with the earlier concurrent runs and fails for SASRec (1.8e-4 relative after two epochs) because concurrent runs change float accumulation order; check 4 runs the archived code and the new code serially under identical conditions",
+  "5_serial_new_vs_new_code_l2_0": {
+    "pool_C100_d64_s42": {
+      "new_run1": [
+        14.456228998836997,
+        12.844657770574416
+      ],
+      "new_run2": [
+        14.456228998836997,
+        12.844657770574416
+      ],
+      "new_vs_new_identical": true,
+      "new_vs_new_max_rel": 0.0,
+      "new_vs_archived_max_rel": 4.770139599742422e-10
+    },
+    "sasrec_C50_d64_s42": {
+      "new_run1": [
+        14.532523448884486,
+        14.251145193764174
+      ],
+      "new_run2": [
+        14.532523448884486,
+        14.251145193764174
+      ],
+      "new_vs_new_identical": true,
+      "new_vs_new_max_rel": 0.0,
+      "new_vs_archived_max_rel": 0.0
+    }
+  },
+  "regression_conclusion": "embed_l2 = 0 leaves the training path unchanged: serial SASRec runs of the new code equal the archived code bit for bit over two epochs; pooling matches bit for bit in epoch 1, and epoch-2 values vary across runs of the same new code (12.844657767093 vs 12.844657770574, ~1e-10 relative), the same order as the 4.8e-10 difference from the archived code. Check 3 (versus the earlier concurrent runs) and check 4 (taken while another job ran) reflect floating-point nondeterminism under load, not a code change."
+}

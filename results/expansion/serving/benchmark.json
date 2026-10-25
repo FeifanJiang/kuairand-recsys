@@ -1,0 +1,172 @@
+{
+  "hardware": {
+    "machine": "arm64",
+    "cpu": "Apple M1",
+    "cores": 8,
+    "memory_gb": 17.179869184,
+    "os": "macOS-26.7.1-arm64-arm-64bit"
+  },
+  "server": {
+    "workers": 1,
+    "faiss_threads": 8,
+    "python": "3.12.15",
+    "bundle_version": "v1",
+    "startup_wall_seconds": 7.576015949249268,
+    "load_seconds": {
+      "features_and_models": 2.2005460262298584,
+      "flat_index": 0.40218615531921387,
+      "hnsw_index": 2.035188913345337,
+      "seen_and_pop": 0.20006799697875977,
+      "total": 4.837990045547485
+    },
+    "peak_rss_gb": 4.565614592
+  },
+  "index_build_seconds": {
+    "flat": 0.44495105743408203,
+    "hnsw": 93.20717906951904,
+    "hnsw_M": 32,
+    "hnsw_efConstruction": 200
+  },
+  "bundle_build_seconds_total": 377.60669016838074,
+  "conditions": "warm process (50 warm-up requests per index); random known users with valid factors; default as_of; k=20, 200 candidates; the service caches nothing per request; client and server on the same machine; latency measured at the client",
+  "results": [
+    {
+      "requests": 200,
+      "concurrency": 1,
+      "wall_seconds": 11.621173583087511,
+      "throughput_rps": 17.209965806815188,
+      "latency": {
+        "p50_ms": 56.855915987398475,
+        "p95_ms": 63.96320344647389,
+        "mean_ms": 58.041842691018246
+      },
+      "stage_retrieval": {
+        "p50_ms": 11.609911918640137,
+        "p95_ms": 13.6765718460083,
+        "mean_ms": 11.974619626998901
+      },
+      "stage_features_scoring": {
+        "p50_ms": 43.29538345336914,
+        "p95_ms": 48.222351074218736,
+        "mean_ms": 44.18138265609741
+      },
+      "index": "flat",
+      "ef_search": null
+    },
+    {
+      "requests": 400,
+      "concurrency": 4,
+      "wall_seconds": 16.771915957913734,
+      "throughput_rps": 23.849392103068716,
+      "latency": {
+        "p50_ms": 164.24066701438278,
+        "p95_ms": 189.05052770860493,
+        "mean_ms": 166.94781663478352
+      },
+      "stage_retrieval": {
+        "p50_ms": 23.491621017456055,
+        "p95_ms": 37.97788619995115,
+        "mean_ms": 24.47397768497467
+      },
+      "stage_features_scoring": {
+        "p50_ms": 121.71018123626709,
+        "p95_ms": 154.13399934768677,
+        "mean_ms": 125.85458278656006
+      },
+      "index": "flat",
+      "ef_search": null
+    },
+    {
+      "requests": 800,
+      "concurrency": 16,
+      "wall_seconds": 31.658154709031805,
+      "throughput_rps": 25.269950423603394,
+      "latency": {
+        "p50_ms": 620.0639374437742,
+        "p95_ms": 880.42641102802,
+        "mean_ms": 627.4763857263315
+      },
+      "stage_retrieval": {
+        "p50_ms": 95.52741050720215,
+        "p95_ms": 334.5516443252563,
+        "mean_ms": 127.8769639134407
+      },
+      "stage_features_scoring": {
+        "p50_ms": 358.24644565582275,
+        "p95_ms": 602.1090626716614,
+        "mean_ms": 361.07119888067245
+      },
+      "index": "flat",
+      "ef_search": null
+    },
+    {
+      "requests": 200,
+      "concurrency": 1,
+      "wall_seconds": 8.837843624991365,
+      "throughput_rps": 22.629954600514377,
+      "latency": {
+        "p50_ms": 43.67656243266538,
+        "p95_ms": 46.553405933082104,
+        "mean_ms": 44.12750730232801
+      },
+      "stage_retrieval": {
+        "p50_ms": 0.7894039154052734,
+        "p95_ms": 1.4257669448852537,
+        "mean_ms": 0.9200620651245117
+      },
+      "stage_features_scoring": {
+        "p50_ms": 41.19884967803955,
+        "p95_ms": 43.60208511352539,
+        "mean_ms": 41.501619815826416
+      },
+      "index": "hnsw",
+      "ef_search": 128
+    },
+    {
+      "requests": 400,
+      "concurrency": 4,
+      "wall_seconds": 12.09696433309,
+      "throughput_rps": 33.06614692628639,
+      "latency": {
+        "p50_ms": 117.60677100392058,
+        "p95_ms": 148.8873586640693,
+        "mean_ms": 120.826569259807
+      },
+      "stage_retrieval": {
+        "p50_ms": 0.912785530090332,
+        "p95_ms": 1.5744090080261228,
+        "mean_ms": 0.9499824047088623
+      },
+      "stage_features_scoring": {
+        "p50_ms": 113.62743377685547,
+        "p95_ms": 142.18331575393665,
+        "mean_ms": 115.87630450725555
+      },
+      "index": "hnsw",
+      "ef_search": 128
+    },
+    {
+      "requests": 800,
+      "concurrency": 16,
+      "wall_seconds": 24.036007749964483,
+      "throughput_rps": 33.28339748938474,
+      "latency": {
+        "p50_ms": 472.893541038502,
+        "p95_ms": 704.7293190902565,
+        "mean_ms": 475.06086749155656
+      },
+      "stage_retrieval": {
+        "p50_ms": 11.386275291442871,
+        "p95_ms": 174.47370290756223,
+        "mean_ms": 38.77591162919998
+      },
+      "stage_features_scoring": {
+        "p50_ms": 334.9175453186035,
+        "p95_ms": 473.27115535736084,
+        "mean_ms": 328.3569732308388
+      },
+      "index": "hnsw",
+      "ef_search": 128
+    }
+  ]
+}

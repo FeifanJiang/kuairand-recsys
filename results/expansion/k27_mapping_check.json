@@ -1,0 +1,68 @@
+{
+  "archive_md5_verified": "3e3c799a24e2d23a4d2c757fbf9adf59",
+  "members": [
+    {
+      "name": "KuaiRand-27K",
+      "size": 0
+    },
+    {
+      "name": "KuaiRand-27K/load_data_27k.py",
+      "size": 2037
+    },
+    {
+      "name": "KuaiRand-27K/data",
+      "size": 0
+    },
+    {
+      "name": "KuaiRand-27K/data/user_features_27k.csv",
+      "size": 3519028
+    },
+    {
+      "name": "KuaiRand-27K/data/video_features_statistic_27k_part2.csv",
+      "size": 7219934742
+    },
+    {
+      "name": "KuaiRand-27K/data/video_features_statistic_27k_part3.csv",
+      "size": 7220859191
+    },
+    {
+      "name": "KuaiRand-27K/data/video_features_statistic_27k_part1.csv",
+      "size": 7222525157
+    },
+    {
+      "name": "KuaiRand-27K/data/video_features_basic_27k.csv",
+      "size": 2796341026
+    },
+    {
+      "name": "KuaiRand-27K/data/log_standard_4_22_to_5_08_27k_part2.csv",
+      "size": 7035008322
+    },
+    {
+      "name": "KuaiRand-27K/data/log_standard_4_08_to_4_21_27k_part2.csv",
+      "size": 5157310890
+    },
+    {
+      "name": "KuaiRand-27K/data/log_standard_4_22_to_5_08_27k_part1.csv",
+      "size": 7080264277
+    },
+    {
+      "name": "KuaiRand-27K/data/log_standard_4_08_to_4_21_27k_part1.csv",
+      "size": 5182942311
+    },
+    {
+      "name": "KuaiRand-27K/data/log_random_4_22_to_5_08_27k.csv",
+      "size": 87086116
+    }
+  ],
+  "KuaiRand-27K/data/user_features_27k.csv": {
+    "md5_27k": "c7ad8218429f511868c6335970555de5",
+    "md5_pure": "c7ad8218429f511868c6335970555de5",
+    "identical": true
+  },
+  "KuaiRand-27K/data/log_random_4_22_to_5_08_27k.csv": {
+    "md5_27k": "ae7a1806651138dee0c0c49b22d22e7a",
+    "md5_pure": "ae7a1806651138dee0c0c49b22d22e7a",
+    "identical": true
+  },
+  "all_identical": true
+}

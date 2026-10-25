@@ -1,0 +1,157 @@
+{
+  "selection": {
+    "pool": {
+      "encoder": "pool",
+      "C": 100,
+      "dim": 64
+    },
+    "sasrec": {
+      "encoder": "sasrec",
+      "C": 50,
+      "dim": 64
+    }
+  },
+  "chosen_epochs": {
+    "pool": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "sasrec": [
+      10,
+      6,
+      10,
+      8,
+      8
+    ]
+  },
+  "baseline_regression_vs_step19": {
+    "ials_time_unfiltered_k20": true,
+    "ials_time_unfiltered_k50": true,
+    "ials_time_unfiltered_k100": true,
+    "ials_time_filtered_k20": true,
+    "ials_time_filtered_k50": true,
+    "ials_time_filtered_k100": true,
+    "time_popularity_unfiltered_k20": true,
+    "time_popularity_unfiltered_k50": true,
+    "time_popularity_unfiltered_k100": true,
+    "time_popularity_filtered_k20": true,
+    "time_popularity_filtered_k50": true,
+    "time_popularity_filtered_k100": true
+  },
+  "baseline_regression_all_passed": true,
+  "shuffle_sensitivity": {
+    "sasrec_filtered_k20": {
+      "ordered": 0.0019429923462438835,
+      "shuffled": 0.002066237099287754,
+      "difference": 0.00012324475304387053,
+      "ci95": [
+        -9.063237316249133e-05,
+        0.0004025189114401247
+      ]
+    },
+    "sasrec_filtered_k50": {
+      "ordered": 0.004065923379420352,
+      "shuffled": 0.004082318629963345,
+      "difference": 1.6395250542992922e-05,
+      "ci95": [
+        -0.00022830538517004442,
+        0.0003217875430200032
+      ]
+    },
+    "sasrec_filtered_k100": {
+      "ordered": 0.006764522641590027,
+      "shuffled": 0.006609294668688457,
+      "difference": -0.0001552279729015699,
+      "ci95": [
+        -0.0004316912063361779,
+        0.00011641175931986242
+      ]
+    },
+    "sasrec_unfiltered_k20": {
+      "ordered": 0.0017046788660254333,
+      "shuffled": 0.0018307183023791131,
+      "difference": 0.00012603943635367985,
+      "ci95": [
+        -8.066425371436358e-05,
+        0.0004183679818513111
+      ]
+    },
+    "sasrec_unfiltered_k50": {
+      "ordered": 0.0036978791627268423,
+      "shuffled": 0.0037370617595952767,
+      "difference": 3.918259686843489e-05,
+      "ci95": [
+        -0.0002031065895992282,
+        0.00034929330675797387
+      ]
+    },
+    "sasrec_unfiltered_k100": {
+      "ordered": 0.006323632991505352,
+      "shuffled": 0.006075256616365263,
+      "difference": -0.00024837637514008845,
+      "ci95": [
+        -0.0005201056132375383,
+        2.3465938221279815e-05
+      ]
+    },
+    "pool_filtered_k20": {
+      "ordered": 0.004014791779670689,
+      "shuffled": 0.004091076183649477,
+      "difference": 7.628440397878714e-05,
+      "ci95": [
+        -8.730214592510162e-05,
+        0.0002404318581650525
+      ]
+    },
+    "pool_filtered_k50": {
+      "ordered": 0.008572949148019506,
+      "shuffled": 0.008320387500388972,
+      "difference": -0.00025256164763053465,
+      "ci95": [
+        -0.000542132457215903,
+        2.607871663764649e-05
+      ]
+    },
+    "pool_filtered_k100": {
+      "ordered": 0.014455145133204216,
+      "shuffled": 0.014289907314474819,
+      "difference": -0.0001652378187293981,
+      "ci95": [
+        -0.0008899235698905732,
+        0.00027669781100045165
+      ]
+    },
+    "pool_unfiltered_k20": {
+      "ordered": 0.0032989005833053554,
+      "shuffled": 0.0033579900507042953,
+      "difference": 5.908946739893941e-05,
+      "ci95": [
+        -0.00011958431333817592,
+        0.0002469570948232764
+      ]
+    },
+    "pool_unfiltered_k50": {
+      "ordered": 0.007044953490341482,
+      "shuffled": 0.007104113770192595,
+      "difference": 5.91602798511131e-05,
+      "ci95": [
+        -0.0002637761583102651,
+        0.0004943138590267958
+      ]
+    },
+    "pool_unfiltered_k100": {
+      "ordered": 0.012900670090412363,
+      "shuffled": 0.012832893619338795,
+      "difference": -6.77764710735685e-05,
+      "ci95": [
+        -0.0008380954984768401,
+        0.0004099192237370081
+      ]
+    }
+  },
+  "evidence_status": "report half inspected repeatedly; development evidence, not fresh confirmation",
+  "test_accessed": false
+}

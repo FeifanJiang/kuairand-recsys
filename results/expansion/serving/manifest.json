@@ -1,0 +1,193 @@
+{
+  "bundle_version": "v1",
+  "created_utc": "2026-10-24T01:58:06.271978+00:00",
+  "seed": 0,
+  "cutoff": {
+    "T0_ms": 1649339966592,
+    "T_ms": 1650556799975,
+    "last_training_date_shanghai": 20220421
+  },
+  "as_of_default_ms": 1650556800000,
+  "as_of_rule": "request parameter; must be after T_ms; default = 2022-04-22 00:00 Asia/Shanghai; features are frozen at the cutoff and aged to as_of",
+  "retrieval": {
+    "model": "tuned iALS tau 2 / alpha 30 / l2 1000, seed 0",
+    "metric": "inner product, no normalisation",
+    "indexes": [
+      "faiss_flat_ip (exact)",
+      "faiss_hnsw_ip"
+    ]
+  },
+  "ranking": {
+    "model": "M3 = LR-L2 features + standardized iALS score + has-factors flag, refit on 98,021 development week-1 random-exposure labels"
+  },
+  "build_info": {
+    "duration": {
+      "videos": 32038725,
+      "missing": 6758072,
+      "unit": "milliseconds (same scale as the logged duration_ms, checked in serving/check_correctness.py)",
+      "seconds": 128.1458399295807
+    },
+    "tables": {
+      "g": {
+        "rows": 1,
+        "columns": [
+          "g_n",
+          "g_l"
+        ],
+        "seconds": 0.0017743110656738281
+      },
+      "v": {
+        "rows": 15298279,
+        "columns": [
+          "v_n",
+          "v_l",
+          "v_E0.5",
+          "v_E2",
+          "v_lastlv"
+        ],
+        "seconds": 6.35503077507019
+      },
+      "a": {
+        "rows": 4950112,
+        "columns": [
+          "a_n",
+          "a_l",
+          "a_E0.5",
+          "a_E2",
+          "a_lastlv"
+        ],
+        "seconds": 1.875114917755127
+      },
+      "tg": {
+        "rows": 59,
+        "columns": [
+          "tg_n",
+          "tg_l"
+        ],
+        "seconds": 0.018437862396240234
+      },
+      "u": {
+        "rows": 26904,
+        "columns": [
+          "u_n",
+          "u_l",
+          "u_lv_logdur",
+          "u_lv_short"
+        ],
+        "seconds": 0.00822901725769043
+      },
+      "ua": {
+        "rows": 96063656,
+        "columns": [
+          "ua_n",
+          "ua_l"
+        ],
+        "seconds": 112.36338686943054
+      },
+      "ut": {
+        "rows": 1081377,
+        "columns": [
+          "ut_n",
+          "ut_l"
+        ],
+        "seconds": 0.4802589416503906
+      }
+    },
+    "seen_pop": {
+      "users_with_long_views": 26826,
+      "pairs": 35741430,
+      "top_videos": 2000,
+      "tau_days": 0.5,
+      "T0": 1649339966592,
+      "T": 1650556799975,
+      "seconds": 28.712663173675537
+    },
+    "ials": {
+      "users": 26904,
+      "items": 4491380,
+      "dim": 32,
+      "seconds_load": 0.7753779888153076,
+      "seconds_flat_build": 0.44495105743408203,
+      "seconds_hnsw_build": 93.20717906951904,
+      "hnsw_M": 32,
+      "hnsw_efConstruction": 200,
+      "faiss_threads": 8
+    },
+    "models": {
+      "lr_columns": 114,
+      "m3_coefficients": 116
+    }
+  },
+  "components": {
+    "duration_ms.npy": {
+      "bytes": 128155028,
+      "sha256": "6f3045c6718f73921e8b6852129ec6f7eb78f8588f70c253521f564c97a339df"
+    },
+    "faiss_flat_ip.index": {
+      "bytes": 574896685,
+      "sha256": "4b3862c0bef3659875264d936948131538d531de6c9470a75d8d4c1720c153ed"
+    },
+    "faiss_hnsw_ip.index": {
+      "bytes": 1797181906,
+      "sha256": "d1fe8d69c57770b3a9782d75fc2d328ccaa8b278c914b49717e9b73f0a997944"
+    },
+    "ials.npz": {
+      "bytes": 619006632,
+      "sha256": "ba2fce37ef2636f133bc377ffd829c1d055a92a21b7ed91e798f9a3fa6fd071a"
+    },
+    "models.joblib": {
+      "bytes": 6905,
+      "sha256": "a308277384d26090791b4516206ed67ab3b6e1950dea47ad3303e0691facac15"
+    },
+    "seen.npz": {
+      "bytes": 143395696,
+      "sha256": "e3285476dd208d2ca53479d0ac13ea6673413a14b40c1fd6b8bf15b0cf812549"
+    },
+    "stats_a.npz": {
+      "bytes": 198005950,
+      "sha256": "bfb7030aefcfb35ef18e4ec36cb9f1dc328065154bf6741bc067b6125457537e"
+    },
+    "stats_g.npz": {
+      "bytes": 754,
+      "sha256": "11814b11c3705e36165d2ea0db60054c1e5aceacac910c5df0b1586b5f288e81"
+    },
+    "stats_tg.npz": {
+      "bytes": 1686,
+      "sha256": "77b97a5e52c478011d7121b4a6589c2357dd0a09d386e8ca41a09c24c1d03890"
+    },
+    "stats_u.npz": {
+      "bytes": 754556,
+      "sha256": "16c172f49726f6ae16b2899fff3b89714cb26def3b86821219138bd45b68cd9f"
+    },
+    "stats_ua.npz": {
+      "bytes": 1537019238,
+      "sha256": "4c10268865248220df459f5780d777854a425ffa09bfbe161e95f22488cc6ec9"
+    },
+    "stats_ut.npz": {
+      "bytes": 17302774,
+      "sha256": "bc20edfc4277d61c7b8850e74c4ebeecaa39daea2942f64489f3e8610cb2c8e4"
+    },
+    "stats_v.npz": {
+      "bytes": 611932630,
+      "sha256": "184bba11825820bf2e852654114e6d52bf4142673cb0b2f716d1fd0de6694454"
+    },
+    "time_pop.npz": {
+      "bytes": 24512,
+      "sha256": "51b6328e61311154995e5f58fc9c2b665656d10841a6560696d3c9563bfe8a8c"
+    }
+  },
+  "source_artifacts_sha256": {
+    "artifacts/k27_experiment/ials/tau2_alpha30_l21000_s0.pt": "b4b66ea2c0025e0b861a6289a3147f2a4cea4f81dac9796a7cdf3d31c8d50a31",
+    "artifacts/k27_experiment/LR-L2_l20.0001.pt": "bae7a4679037432d440286e9808db55a2f36d7845e560353bcc9635009f2c66e",
+    "artifacts/k27_experiment/adapt/adapted_models.joblib": "95918747799c565c1ca0dc730eb687667c25efaf97bd1647ac954f4ee2ef4fce",
+    "reports/expansion/run_dev/hybrid.json": "f78f5820643e14917052a9dd7d119341daed12be95aac6233c4c6b0e0f396421"
+  },
+  "versions": {
+    "python": "3.12.15",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "torch": "2.14.1",
+    "faiss": "1.15.1"
+  },
+  "build_seconds_total": 377.60669016838074
+}

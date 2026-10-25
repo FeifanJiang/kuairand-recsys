@@ -1,0 +1,33 @@
+{
+  "late_rows": 3962057,
+  "flag_share_training": 0.3193530532246255,
+  "positive_rate_flag1": 0.3236036002635956,
+  "positive_rate_flag0": 0.2446051985025406,
+  "early_score_pooled_auc_flag1_training": 0.6056699410150268,
+  "early_score_per_user_auc_flag1_training": {
+    "users": 24836,
+    "mean": 0.5721244829544652
+  },
+  "flag_share_tune_reference": 0.889308608058608,
+  "full_score_pooled_auc_flag1_tune": 0.6460007525886231,
+  "full_score_per_user_auc_flag1_tune": {
+    "users": 1547,
+    "mean": 0.6477149751356809
+  },
+  "early_score_per_user_auc_flag1_tune": {
+    "users": 1514,
+    "mean": 0.6428264744810217,
+    "flag_share": 0.859375
+  },
+  "lr_fusion_selected": "LR-L2+iALS_late_l20.0001",
+  "lr_fusion_coef_ials_z": -0.0058942255564033985,
+  "lr_fusion_coef_ials_flag": 0.034513864666223526,
+  "lr_fusion_top_abs_coefs": {
+    "a_log_exposures": 0.5137,
+    "a_log_long_views": 0.4417,
+    "ut_rate": 0.3917,
+    "v_rate": 0.2982,
+    "u_rate": 0.2734,
+    "zero_duration": 0.2624
+  }
+}

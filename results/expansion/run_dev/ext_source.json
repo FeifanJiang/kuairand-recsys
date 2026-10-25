@@ -1,0 +1,247 @@
+{
+  "protocol": "reports/expansion/protocol_extension_source.json",
+  "evidence_level": "extension analysis (development week 2 already viewed for earlier models)",
+  "extraction": {
+    "rows_read": 185981809,
+    "rows_target_users_window_valid": 7647795,
+    "rows_scope_A": 3003434,
+    "quota_rows": 98021,
+    "quota_cells": 14944,
+    "kept_rows": 97809,
+    "cells_short": 184,
+    "shortfall_rows": 212,
+    "cells_with_zero_logged_rows": 34,
+    "rule": "cells with fewer logged rows than quota contribute all of them; nothing is filled from other cells or users"
+  },
+  "pool_variant": {
+    "quota_cells": 8086,
+    "quota_rows": 15200,
+    "random_pool_rows_kept": 10007,
+    "random_cells_short": 2759,
+    "random_shortfall_rows": 5193
+  },
+  "training_sets": {
+    "logged_week1": {
+      "rows": 97809,
+      "users": 3271,
+      "positive_rate": 0.3740964532916194,
+      "selected_l2": 0.1,
+      "grid": [
+        {
+          "l2": 0.001,
+          "objective": 0.5584284872937607,
+          "grad_norm": 1.838673152311332e-08,
+          "train_rows": 49214,
+          "report_week1_auc": 0.6017015803681129
+        },
+        {
+          "l2": 0.01,
+          "objective": 0.5636982114391915,
+          "grad_norm": 1.5676399808443227e-08,
+          "train_rows": 49214,
+          "report_week1_auc": 0.5985721168622491
+        },
+        {
+          "l2": 0.1,
+          "objective": 0.5861453555043401,
+          "grad_norm": 2.2424617455986986e-08,
+          "train_rows": 49214,
+          "report_week1_auc": 0.6017483270844733
+        }
+      ],
+      "refit_rows": 97809,
+      "scope_A_share": 1.0
+    },
+    "random_week1": {
+      "rows": 98021,
+      "users": 3271,
+      "positive_rate": 0.10919088766692851,
+      "selected_l2": 0.001,
+      "grid": [
+        {
+          "l2": 0.001,
+          "objective": 0.31381770491706834,
+          "grad_norm": 5.053075321690439e-08,
+          "train_rows": 49337,
+          "report_week1_auc": 0.6709115632234245
+        },
+        {
+          "l2": 0.01,
+          "objective": 0.3175331062318728,
+          "grad_norm": 1.3205375771876983e-08,
+          "train_rows": 49337,
+          "report_week1_auc": 0.665887756911656
+        },
+        {
+          "l2": 0.1,
+          "objective": 0.329692310302889,
+          "grad_norm": 1.7384915153703673e-08,
+          "train_rows": 49337,
+          "report_week1_auc": 0.6572248617058476
+        }
+      ],
+      "refit_rows": 98021,
+      "scope_A_share": 1.0
+    },
+    "logged_week1_pool": {
+      "rows": 15200,
+      "users": 2785,
+      "positive_rate": 0.3792105263157895,
+      "selected_l2": 0.01,
+      "grid": [
+        {
+          "l2": 0.001,
+          "objective": 0.5838966886050098,
+          "grad_norm": 1.9783119447426577e-08,
+          "train_rows": 7285,
+          "report_week1_auc": 0.6078868957914849
+        },
+        {
+          "l2": 0.01,
+          "objective": 0.5880821120741695,
+          "grad_norm": 1.6733597659617733e-08,
+          "train_rows": 7285,
+          "report_week1_auc": 0.6101432325963847
+        },
+        {
+          "l2": 0.1,
+          "objective": 0.6055045285935965,
+          "grad_norm": 2.2423367108198417e-08,
+          "train_rows": 7285,
+          "report_week1_auc": 0.6090466694896485
+        }
+      ],
+      "refit_rows": 15200,
+      "scope_A_share": 0.9998684210526316
+    },
+    "random_week1_pool": {
+      "rows": 10007,
+      "users": 2577,
+      "positive_rate": 0.14150094933546517,
+      "selected_l2": 0.001,
+      "grid": [
+        {
+          "l2": 0.001,
+          "objective": 0.3675447138734493,
+          "grad_norm": 1.3336983952175541e-08,
+          "train_rows": 4900,
+          "report_week1_auc": 0.6551635430136025
+        },
+        {
+          "l2": 0.01,
+          "objective": 0.37163782670106144,
+          "grad_norm": 1.266257331558532e-08,
+          "train_rows": 4900,
+          "report_week1_auc": 0.6537849845375573
+        },
+        {
+          "l2": 0.1,
+          "objective": 0.3832605769994028,
+          "grad_norm": 1.3913659530063216e-08,
+          "train_rows": 4900,
+          "report_week1_auc": 0.6481862335040227
+        }
+      ],
+      "refit_rows": 10007,
+      "scope_A_share": 1.0
+    }
+  },
+  "week2": {
+    "users": 7891,
+    "exposures": 424766,
+    "mean_user_auc": {
+      "logged_week1": 0.6128240980841652,
+      "random_week1": 0.6711222800669372,
+      "logged_week1_pool": 0.6221948488282204,
+      "random_week1_pool": 0.6677448737922661,
+      "LR-L2_6M_logged": 0.6261195061656064,
+      "iALS_tuned": 0.6442720590121362,
+      "M2_published": 0.6711222800669372
+    },
+    "random_week1_equals_published_M2": true,
+    "contrasts": {
+      "random_minus_logged_week1": {
+        "users": 7891,
+        "a": 0.6711222800669372,
+        "b": 0.6128240980841652,
+        "difference": 0.05829818198277209,
+        "ci95": [
+          0.05423220385653135,
+          0.06241606133704601
+        ]
+      },
+      "logged_week1_minus_LRL2_6M": {
+        "users": 7891,
+        "a": 0.6128240980841652,
+        "b": 0.6261195061656064,
+        "difference": -0.013295408081441341,
+        "ci95": [
+          -0.015142269277713397,
+          -0.011433937419408582
+        ]
+      },
+      "random_week1_minus_LRL2_6M": {
+        "users": 7891,
+        "a": 0.6711222800669372,
+        "b": 0.6261195061656064,
+        "difference": 0.04500277390133075,
+        "ci95": [
+          0.0412508214205281,
+          0.04885811773614937
+        ]
+      },
+      "logged_week1_minus_iALS_tuned": {
+        "users": 7891,
+        "a": 0.6128240980841652,
+        "b": 0.6442720590121362,
+        "difference": -0.03144796092797107,
+        "ci95": [
+          -0.03688134921532762,
+          -0.02608683988144166
+        ]
+      },
+      "random_week1_minus_iALS_tuned": {
+        "users": 7891,
+        "a": 0.6711222800669372,
+        "b": 0.6442720590121362,
+        "difference": 0.026850221054801025,
+        "ci95": [
+          0.02194584081101755,
+          0.031859693501249696
+        ]
+      },
+      "pool_random_minus_logged": {
+        "users": 7891,
+        "a": 0.6677448737922661,
+        "b": 0.6221948488282204,
+        "difference": 0.04555002496404572,
+        "ci95": [
+          0.0414068107213088,
+          0.04960936612880312
+        ]
+      },
+      "pool_logged_minus_LRL2_6M": {
+        "users": 7891,
+        "a": 0.6221948488282204,
+        "b": 0.6261195061656064,
+        "difference": -0.003924657337386074,
+        "ci95": [
+          -0.006084429621964147,
+          -0.001750476319088884
+        ]
+      },
+      "pool_random_minus_LRL2_6M": {
+        "users": 7891,
+        "a": 0.6677448737922661,
+        "b": 0.6261195061656064,
+        "difference": 0.04162536762665965,
+        "ci95": [
+          0.03777531406471347,
+          0.045656087661035044
+        ]
+      }
+    }
+  },
+  "reading": "under identical features, cell-matched rows and procedure, the random-minus-logged difference is attributed to the label source (exposure mechanism and the label distribution it induces); controlled comparison, not a causal identification",
+  "finished_utc": "2026-10-24T01:58:50.728644+00:00"
+}

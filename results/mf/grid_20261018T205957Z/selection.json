@@ -1,0 +1,43 @@
+{
+  "ials": {
+    "setting": {
+      "dim": 32,
+      "l2": 100.0,
+      "alpha": 30.0
+    },
+    "selected_run_id": "20261018T211139Z_ials_k32_l2-100_a30",
+    "grid_edges_hit": [
+      "l2=100",
+      "alpha=30"
+    ],
+    "seeds": [
+      42,
+      1,
+      2,
+      3,
+      4
+    ],
+    "recall_at_100_mean": 0.008491546286004539,
+    "recall_at_100_sd": 0.00026118031915924663
+  },
+  "bpr": {
+    "setting": {
+      "dim": 16,
+      "l2": 10.0,
+      "penalty": "gaussian"
+    },
+    "selected_run_id": "20261018T215511Z_bpr_k16_l2-10_gaussian",
+    "grid_edges_hit": [
+      "dim=16"
+    ],
+    "seeds": [
+      42,
+      1,
+      2,
+      3,
+      4
+    ],
+    "recall_at_100_mean": 0.00602976928914372,
+    "recall_at_100_sd": 0.00025041150322134163
+  }
+}

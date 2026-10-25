@@ -1,0 +1,11 @@
+{
+  "phase": "validation",
+  "coverage": {
+    "all_target_pairs": 665817,
+    "eligible_target_pairs": 194133,
+    "coverage": 0.29157110737635117,
+    "users": 964
+  },
+  "filtered_unreachable_targets": 15,
+  "filtered_unreachable_share": 7.726661618581077e-05
+}

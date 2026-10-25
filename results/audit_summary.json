@@ -1,0 +1,101 @@
+{
+  "archive_md5": "6b0b9c8222d67fcd4c676218edca3f1f",
+  "raw_events": 11756073,
+  "clean_events": 11661848,
+  "exact_duplicates_removed": 94225,
+  "quarantined_events": 0,
+  "users": 1000,
+  "videos": 4371868,
+  "repeated_pair_events_retained": 240401,
+  "candidate_videos": 2120292,
+  "date_alignment": {
+    "UTC": 0.8461533712324153,
+    "Asia/Shanghai": 0.9929282220107825
+  },
+  "date_mismatch_events": 82470,
+  "metadata_join": {
+    "missing_user_metadata_events": 0,
+    "missing_video_metadata_events": 0
+  },
+  "observations": {
+    "zero_duration_events": 936226,
+    "watch_longer_than_video_events": 2437213
+  },
+  "splits": [
+    {
+      "split": "train",
+      "events": 5023746,
+      "users": 983,
+      "videos": 2120292,
+      "positive_events": 1329197,
+      "long_view_rate": 0.2645828431612586,
+      "catalog_event_coverage": 1.0,
+      "catalog_positive_coverage": 1.0,
+      "known_user_coverage": 1.0,
+      "date_min": 20220407,
+      "date_max": 20220421,
+      "time_ms_min": 1649340003236,
+      "time_ms_max": 1650556799026
+    },
+    {
+      "split": "validation",
+      "events": 2503783,
+      "users": 978,
+      "videos": 1160023,
+      "positive_events": 665994,
+      "long_view_rate": 0.2659950962203993,
+      "catalog_event_coverage": 0.2575562658585029,
+      "catalog_positive_coverage": 0.2925536866698499,
+      "known_user_coverage": 0.99888808255348,
+      "date_min": 20220422,
+      "date_max": 20220428,
+      "time_ms_min": 1650556800879,
+      "time_ms_max": 1651161599095
+    },
+    {
+      "split": "test",
+      "events": 4091292,
+      "users": 997,
+      "videos": 1778302,
+      "positive_events": 1066225,
+      "long_view_rate": 0.2606083848329574,
+      "catalog_event_coverage": 0.15098164589572194,
+      "catalog_positive_coverage": 0.1724467162184342,
+      "known_user_coverage": 0.9913359887292327,
+      "date_min": 20220429,
+      "date_max": 20220508,
+      "time_ms_min": 1651161602885,
+      "time_ms_max": 1652025129022
+    },
+    {
+      "split": "random_validation",
+      "events": 10220,
+      "users": 683,
+      "videos": 5586,
+      "positive_events": 800,
+      "long_view_rate": 0.07827788649706457,
+      "catalog_event_coverage": 0.6995107632093933,
+      "catalog_positive_coverage": 0.7725,
+      "known_user_coverage": 0.9959882583170254,
+      "date_min": 20220422,
+      "date_max": 20220428,
+      "time_ms_min": 1650600645720,
+      "time_ms_max": 1651161531516
+    },
+    {
+      "split": "random_test",
+      "events": 32807,
+      "users": 986,
+      "videos": 7229,
+      "positive_events": 2821,
+      "long_view_rate": 0.08598774651751151,
+      "catalog_event_coverage": 0.6983875392446733,
+      "catalog_positive_coverage": 0.7791563275434243,
+      "known_user_coverage": 0.9812844819703113,
+      "date_min": 20220429,
+      "date_max": 20220508,
+      "time_ms_min": 1651161637345,
+      "time_ms_max": 1652025123404
+    }
+  ]
+}
